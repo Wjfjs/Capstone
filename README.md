@@ -19,7 +19,7 @@
 ▷ 캡스톤 아키텍처 정의서(개정이력) 작성.<br>
 [캡스톤_개정이력.xlsx](https://github.com/Wjfjs/Capstone/files/14862098/_.xlsx)<br>
 ▷ 요구사항 정의서 작성.<br>
-[캡디_요구사항 정의서.xlsx](https://github.com/Wjfjs/Capstone/files/14862100/_.xlsx)<br>
+[MINERVA 캡디 요구사항정의서 V1.0.xlsx](https://github.com/Wjfjs/Capstone/files/14862149/MINERVA.V1.0.xlsx)<br>
 ▷ 화면설계서 작성.<br>
 [MINERVA 캡디 화면설계서 V0.1.pptx](https://github.com/Wjfjs/Capstone/files/14862081/MINERVA.V0.1.pptx)<br>
 
