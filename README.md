@@ -24,4 +24,6 @@
 [MINERVA 캡디 화면설계서 V0.1.pptx](https://github.com/Wjfjs/Capstone/files/14862081/MINERVA.V0.1.pptx)<br>
 
 # 5주차
-▷ 
+▷ 산출물 피드백.<br>
+▷ 업무흐름도 작성.<br>
+▷ 요구사항 정의서 수정.<br>
