@@ -12,12 +12,13 @@
 ▷ 팀 계획 설정.<br>
 
 # 3주차
-▷ 캡스톤 디자인 신청서 작성.
-▷ YOLO, PYTHON 등 기능 구현 방법 관련 자료 조사
+▷ 캡스톤 디자인 신청서 작성.<br>
+▷ YOLO, PYTHON 등 기능 구현 방법 관련 자료 조사.<br>
 
 # 4주차
 ▷ 요구사항 정의서 작성.<br>
 ▷ 화면설계서 작성.<br>
+[MINERVA 캡디 화면설계서 V0.1.pptx](https://github.com/Wjfjs/Capstone/files/14862081/MINERVA.V0.1.pptx)
 ▷ ERD 작성.<br>
 
 # 5주차
