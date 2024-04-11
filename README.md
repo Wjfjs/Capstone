@@ -27,3 +27,4 @@
 # 6주차
 ▷ ERD 작성.<br>
 ▷ 제작에 필요한 물품 구매 회의.<br>
+▷ Visual code, mineconda, CUDA, openCV, yoloV8
