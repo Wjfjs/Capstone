@@ -2,6 +2,7 @@
 <a href="https://padlet.com/ihlee90/3_-2-24-1-oxt3cfnxps26m4fz">24-1학기 캡스톤 디자인 패들랫</a><br>
 
 # <test 브랜치에 코드 올려><br>
+<a href="./캡스톤 디자인/자료조사.md>yolo설치</a><br><br>
 
 # 1주차
 ▷ 팀 선정.<br>
