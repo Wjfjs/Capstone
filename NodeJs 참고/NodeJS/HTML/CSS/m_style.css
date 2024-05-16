@@ -1,0 +1,446 @@
+/* ALL */
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;;
+}
+a{
+    text-decoration: none;
+    margin-right: 25px;
+    color: #C0C0C0;
+}
+a:hover{
+    border-bottom: 1px solid #C0C0C0;
+}
+#Logo {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    margin-bottom: 100px;
+}
+  
+#Logo::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 0;
+    height: 3px;
+    background-color: #333;
+    transition: width 0.3s ease;
+}
+#pageLink {
+	margin: 2% 0%;
+	font-size: 18px;
+}
+#pageLink a {
+	color: black;
+}
+#pageLink a:hover {
+	color: #C0C0C0;
+}
+  
+#Logo:hover::before {
+    width: 100%;
+}
+/* Main.html */
+#Main_BackGround{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#id, #pw,#confirm_pw, #nick_name{
+    width: 500px;
+    height: 70px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 30px;
+    outline: none;
+}
+#login{
+    font-size: 17px;
+    width: 100px;
+    height: 30px;
+    background-color: #347236;
+    border: none;
+    color: white;
+    margin-left: auto;
+}
+#MainMenuBox{
+    font-size: 17px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+/*
+#profile{
+    margin-right: 200px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+#profile > img{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+#profile > span{
+    margin-left: 7px;
+    font-size: 25px;
+}*/
+
+/* SignUp */
+#sign_up{
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    background-color: #347236;
+    border: none;
+    color: white;
+    margin-left: auto;
+}
+.MessageBox{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.MessageBox > Img{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* Main */
+#Board{
+	text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+}
+.Board_Menu{
+	width: 10%;
+    font-size: 18px;
+    height: 50px;
+    color: black;
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+.Board_Title{
+    height: 30px;
+    border-right: none;
+    border-left: none;
+    padding: 15px;
+}
+.add_td_Tag{
+    padding: 15px;
+}
+.Board_Title, .add_tr_tag{
+    background-color: #e6e6e6;
+}
+.add_tr_tag:hover{
+    background-color: #d1d1d1;
+    cursor: pointer;
+}
+.searchBox{
+    width: 400px;
+    border: 1px solid black;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.searchBox *{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+.searchBox select{
+    text-align: center;
+}
+.searchBox input[type="search"]{
+    padding: 10px;
+    width: 100%;
+    border-right: none;
+}
+.searchBox input[type="image"]{
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+}
+/* Post */
+#post{
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid gray;
+    background-color: #fff;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+#post td, #post th{
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+#post th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+#post td[colspan="6"] {
+    padding: 20px;
+}
+#deleteDiv, #updateDiv{
+    width: 80%;
+}
+#delete, #update {
+	text-align: center;
+    cursor: pointer;
+    background-color: #F5F5F5;
+    border: none;
+	border-collapse: collapse;
+	float: right;
+    opacity: 0.2;
+    margin-left: 20px;
+}
+#delete:hover, #update:hover{
+    filter: opacity(0.5) drop-shadow(0 0 0 #d1d1d1);
+}
+.load {
+	padding: 10px;
+}
+#comment{
+	width: 78%;
+	margin: 1% 0% auto;
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+    background-color: #fff;
+	font-size: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+#form_comment {
+	width: 78%;
+}
+#form_comment div {
+	font-size: 1em;
+	font-weight: bold;
+	padding-bottom: 3px;
+	margin: 1% 0%;
+	border-bottom: 1px solid #ccc;
+}
+#textarea_content {
+	width: 100%;
+	height: 5%;
+	text-align: left;
+	resize: none;
+	overflow: hidden;
+	font-size: 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+#textarea_content:focus {
+	height: 129px;
+}
+#button_content {
+	float: right;
+	background-color: #F5F5F5;
+	border: 1px solid #ccc;
+	font-size: 15px;
+	margin-top: 1%;
+	margin-bottom: 10%;
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+	padding: 10px;
+}
+#button_content:hover {
+	background-color: #fff;
+}
+.delete_comment {
+	padding: 10px;
+	text-align: right;
+}
+.delete_comment span {
+	font-size: 15px;
+	cursor: pointer;
+}
+.delete_comment span:hover {
+	text-decoration: underline;
+}
+
+/* Add_Post */
+#Add_Post_Box{
+    width: 800px;
+}
+#Announcements, #free, #QnA{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#Announcements + label, #free + label, #Qna + label{
+    background-color: #e6e6e6;
+}
+#Announcements + label, #free + label, #Qna + label{
+    opacity: 0.1;
+}
+#Announcements + label, #free + label, #QnA + label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    height: 50px;
+    background-color: none;
+    cursor: pointer;
+    font-size: 20px;
+    float: left;
+}
+#add_title, #add_content{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #e6e6e6;
+    font-size: 20px;
+}
+#add_title:focus, #add_content:focus{
+    background-color: #d1d1d1;
+}
+#add_title{
+    height: 50px;
+    padding-left: 40px;
+}
+#lock{
+    width: 25px;
+    height: 25px;
+    float: right;
+    opacity: 0.2;
+    cursor: pointer;
+    display: none;
+}
+#add_content{
+    resize: none;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#post_submit{
+    width: 100%;
+    cursor: pointer;
+    background-color: #e6e6e6;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+}
+#post_submit:hover{
+    background-color: #d1d1d1;
+}
+
+/* Update_Post */
+#Update_Post_Box{
+    width: 50%;
+}
+#update_board_type{
+    border: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 150px;
+    height: 50px;
+    background-color: #e6e6e6;
+    font-size: 20px;
+    float: left;
+    outline: none;
+}
+#update_title, #update_content{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #e6e6e6;
+    font-size: 20px;
+}
+#update_title:focus, #update_content:focus{
+    background-color: #d1d1d1;
+}
+#update_title{
+    height: 50px;
+    padding-left: 40px;
+}
+#update_content{
+    resize: none;
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 15px;
+}
+#update_div{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    background-color: #F5F5F5;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+#update_button{
+    margin-right: 10px;
+}
+#update_div:hover img{
+    filter: opacity(0.7) drop-shadow(0 0 0 #d1d1d1);
+}
+#update_div:hover{
+    color: #d1d1d1;
+    opacity: 0.7;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+	#id, #pw, #confirm_pw, #nick_name {
+		width: 100%;
+		max-width: 100%;
+	}
+	
+	#deleteDiv{
+		width: 80%;
+		max-width: 80%;
+	}
+	
+	#Add_Post_Box {
+		width: 80%;
+		max-width: 80%;
+	}
+	
+	#Board, #post, #Logo {
+		width: 80%;
+		max-width: 80%;
+	}
+	
+	.Board_Menu, .Board_Title, .add_td_Tag {
+		width: 30%;
+		max-width: 30%;
+	}
+
+	#MainMenuBox {
+		font-size: 12px;
+	}
+	
+	#post_submit, .add_td_Tag, #add_title, #add_content, #free + label, #Qna + label, .Board_Menu, .Board_Title {
+		font-size: 15px;
+	}
+}

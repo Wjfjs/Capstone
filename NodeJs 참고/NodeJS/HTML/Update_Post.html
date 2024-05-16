@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Flier</title>
+        <link rel="stylesheet" href="CSS/m_style.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <script src="JavaScript/Board.js"></script>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="Get_Update_Post();">
+        <div id="Logo" onclick="window.location.href = 'Main.html'">NPYS</div>
+        <center>
+            <form id="Update_Post_Box" action='/update-post' method='POST' onsubmit="return confirm('게시글을 수정하시겠습니까?')">
+            </form>
+        </center>
+    </body>
+</html>

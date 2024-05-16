@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Flier</title>
+        <link rel="stylesheet" href="CSS/m_style.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <script src="JavaScript/Board.js"></script>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-color: #F5F5F5;" onload="Board_State_Init(); View_Manage_Users();">
+        <center>
+            <div id="Logo" onclick="window.location.href = 'Main.html'">NPYS</div>
+            <table id="Board">
+                <tr>
+                    <th class="Board_Menu" colspan="1" onclick="Board_Select();">공지사항</th>
+                    <th class="Board_Menu" colspan="1" onclick="Board_Select();">자유게시판</th>
+                    <th class="Board_Menu" colspan="1" onclick="Board_Select();">질문게시판</th>
+					<th class="Board_Menu" id="Manage_Users" colspan="1" style="display: none;" onclick="Board_Select();">유저관리</th>
+                    <th colspan="6" style="width: 60%;"></th>
+                </tr>
+                <tr>
+                    <th class="Board_Title" colspan="1" style="text-align: center; width: 10%;"><input type="checkbox" id="selectAll" style="display: none;" onclick="SelectAll(this)">번호</th>
+                    <th class="Board_Title" colspan="4" style="text-align: center; width: 40%;">제목</th>
+                    <th class="Board_Title" colspan="2" style="text-align: center; width: 20%;">작성자</th>
+                    <th class="Board_Title" colspan="2" style="text-align: center; width: 20%;">등록일</th>
+                    <th class="Board_Title" colspan="1" style="text-align: center; width: 10%;">조회수</th>
+                </tr>
+            </table>
+            <div class="searchBox">
+                <form id="search_post_form" onsubmit="Get_Search_Posts(this)" method="POST">
+                    <select name="col">
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                        <option value="author_id">작성자</option>
+                    </select>
+                    <input type="search" name="search_content" placeholder="검색어를 입력하세요.">
+                    <input type="image" src="Image/search.png">
+                </form>
+            </div>
+			<div id="pageLink" colspan="10" style="text-align: center;"></div>
+        </center>
+    </body>
+</html>

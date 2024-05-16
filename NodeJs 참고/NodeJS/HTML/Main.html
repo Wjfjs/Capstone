@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Flier</title>
+        <link rel="stylesheet" href="CSS/m_style.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <script src="JavaScript/Board.js"></script>
+        <style>
+            #menu_box{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .menu{
+                width: 400px; height: auto;
+                display: inline-block;
+                margin: 0 50px 0 50px;
+                cursor: pointer;
+            }
+            .menu > img{
+                transition: 1s width;
+                width: 400px;
+            }
+            .menu > img:hover{
+                width: 450px;
+            }
+            .menu:nth-child(2){
+                filter: opacity(0.4) drop-shadow(0 0 0 #0011ff);
+            }
+            .menu:nth-child(3){
+                filter: opacity(0.4) drop-shadow(0 0 0 #fbff00);
+            }
+        </style>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="background-color: #F5F5F5;">
+        <center>
+            <div id="Logo" onclick="window.location.href = 'Main.html'">NPYS</div>
+            <div id="menu_box">
+                <div class="menu"><img src="Image/board.png" onclick="window.location.href = 'Board.html';"></div>
+                <div class="menu"><img src="Image/test.png"></div>
+                <div class="menu"><img src="Image/test.png"></div>
+            </div>
+        </center>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Flier</title>
+        <link rel="stylesheet" href="CSS/m_style.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <script src="JavaScript/Board.js"></script>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="Init_Add_Post();">
+        <div id="Logo" onclick="window.location.href = 'Main.html'">NPYS</div>
+        <center>
+            <form onsubmit="Add_Post(this);" method="POST" id="Add_Post_Box">
+                <input type="radio" id="Announcements" name="board_type" value="공지사항" onclick="Change_Values()" style="display: none;"><label for="Announcements">공지사항</label>
+                <input type="radio" id="free" name="board_type" value="자유게시판" onclick="Change_Values()"><label for="free">자유게시판</label>
+                <input type="radio" id="QnA" name="board_type" value="질문게시판" onclick="Change_Values()"><label for="QnA">질문게시판</label>
+                <br>
+                <img src="Image/lock.png" id="lock" onclick="Private_Post(this);" data-state="false">
+                <input type="text" id="add_title" name="title" placeholder="제목">
+                <textarea id="add_content" rows="1" name="content" placeholder="내용" oninput="autoResize(this)"></textarea>
+                <button type="submit" id="post_submit"><img src='Image/add_post.png' width='22px' height='22px' style="vertical-align: middle; margin-right: 10px;">작성하기</button>
+            </form>
+        </center>
+    </body>
+</html>
