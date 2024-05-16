@@ -10,13 +10,13 @@
     <a href="https://made-by-kyu.tistory.com/entry/OpenCV-YOLOv8-%EC%BB%A4%EC%8A%A4%ED%85%80-%ED%95%99%EC%8A%B5-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A7%8C%EB%93%A4%EA%B8%B02">참고자료</a>
   </div>
   <div>
-    결과
-    ![image](https://github.com/Wjfjs/Capstone/assets/148942623/ce26a215-d38f-44e7-9b90-6e8825808e95)
-    테스트 형식으로 진행한거라 인식률 부정확(차 인식 못함, 차 한대에서 두대이상으로 인식, 중앙분리대를 차로 인식 등)
+    결과<br>
+   <img src="https://github.com/Wjfjs/Capstone/assets/148942623/ce26a215-d38f-44e7-9b90-6e8825808e95"><br>
+    테스트 형식으로 진행한거라 인식률 부정확(차 인식 못함, 차 한대에서 두대이상으로 인식, 중앙분리대를 차로 인식 등)<br>
   </div>
   <div>
-    앞으로의 계획
-    데이터셋의 완전하지 않은 모양의 차량을 제거
+    앞으로의 계획<br>
+    데이터셋의 완전하지 않은 모양의 차량을 제거<br>
     더 많고 다양한 양의 동영상으로 라벨 표시
   </div>
 </body>
