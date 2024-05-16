@@ -1,0 +1,25 @@
+aws db 아이디,비밀번호
+cuty
+cutypretty
+
+닉네임 rinotom
+이메일 rhkddns2084@gmail.com
+나머지 minerva
+
+git clone -b test --single-branch https://github.com/Wjfjs/Capstone.git
+
+
+brench 확인 방법
+git branch
+
+brench 교체 방법
+git checkout test
+
+연결 확인
+remote
+
+연결
+git remote add Minerva https://github.com/Wjfjs/Capstone.git
+
+접속(ssh 생성)
+ssh-keygen -t rsa -b 4096 -C "rhkddns2084@gmail.com"
