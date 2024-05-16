@@ -1,9 +1,9 @@
 <header>
-  <title>안녕하세요! 만나서 반가워요!</title>
+  <h1>안녕하세요! 만나서 반가워요!</h1>
 </header>
 <body>
   <div>
-    <h1>오늘한거</h1>
+    <h3>오늘한거</h3>
   </div>
   <div>
     yolov8 전이학습 시도
