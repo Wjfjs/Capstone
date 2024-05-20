@@ -59,7 +59,8 @@
     다음 명령어를 cmd에 입력해주기만 하면 된다. <br><br>
     <pre><code>yolo detect predict model=[best.pt 파일경로] source=[적용해볼 동영상 파일경로]</code></pre>
     (대괄호는 알잘딱으로 생략해주자) <br><br>
-    이걸 성공했다면 <strong>C:\train_data\yolov8\runs\detect</strong> 폴더 안에 predict 폴더가 생성되었을것이다. 이것도 계속 하면 폴더 뒤에 번호가 붙어서 생성된다. <br>
+    이걸 성공했다면 <strong>C:\train_data\yolov8\runs\detect</strong> 폴더 안에 predict 폴더가 생성되었을것이다.<br>
+    이것도 계속 하면 폴더 뒤에 번호가 붙어서 생성된다. <br>
   </div>
   
 </body>
