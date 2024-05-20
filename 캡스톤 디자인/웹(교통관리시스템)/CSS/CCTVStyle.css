@@ -1,0 +1,82 @@
+#container {
+    display: flex;
+    position: relative;
+    overflow-x: auto; /* 가로 스크롤을 추가합니다. */
+}
+
+#left {
+    width: 1500px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#right {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 10px;
+}
+
+#select-form{
+    margin: 0;
+}
+
+#Location_select {
+    min-width: 830px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border : 0.5px solid red;
+}
+
+select {
+    width: 130px;
+    height: 35px;
+    margin-right: 40px;
+    border-radius: 3px;
+    border : 0.5px solid black;
+}
+button {
+    width: 130px;
+    height: 35px;
+    border-radius: 3px;
+    background-color: white;
+    border : 0.5px solid black;
+}
+
+#video {
+    min-width: 830px;
+    height: 700px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border : 0.5px solid orange;
+}
+
+#Log {
+    min-width: 500px;
+    height: 600px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border : 0.5px solid green;
+}
+#Control {
+    min-width: 500px;
+    height: 135px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border : 0.5px solid skyblue;
+}
+

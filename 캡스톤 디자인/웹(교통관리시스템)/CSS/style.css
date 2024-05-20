@@ -1,0 +1,88 @@
+/* ALL */
+a{
+    text-decoration: none;
+    margin-right: 25px;
+    color: #C0C0C0;
+}
+a:hover{
+    border-bottom: 1px solid #C0C0C0;
+}
+
+#box{
+    border: 1px solid purple;
+}
+
+/* Main.html */
+#Main_BackGround{
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#id, #pw,#confirm_pw, #nick_name{
+    width: 500px;
+    height: 70px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 30px;
+    outline: none;
+}
+#login{
+    font-size: 17px;
+    width: 100px;
+    height: 30px;
+    background-color: #347236;
+    border: none;
+    color: white;
+    margin-left: auto;
+}
+#MainMenuBox{
+    font-size: 17px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+/* SignUp */
+#sign_up{
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    background-color: #347236;
+    border: none;
+    color: white;
+    margin-left: auto;
+}
+.MessageBox{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.MessageBox > Img{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+/* Main */
+#Board{
+    width: 1200px;
+    border-collapse: collapse;
+    margin-top: 200px;
+}
+.Board_Menu{
+    font-size: 18px;
+    border: 1px solid gray;
+    border-bottom: none;
+    height: 50px;
+    color: black;
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+.Board_Title{
+    height: 30px;
+    border: 1px solid gray;
+}
+
