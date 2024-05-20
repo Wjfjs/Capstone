@@ -15,7 +15,10 @@
     모두 생성해주기 <br><br>
     <h3>Ultralytics 폴더 다운로드</h3><br>
     <a href="https://github.com/ultralytics/ultralytics">무료다운로드</a> <br>
-    위 링크 다운로드 후 폴더명을 yolov8변경하고 <strong>C:\train_data\yolov8</strong> 에 위치하도록 두기 <br>
+    위 링크 다운로드 후 압축 풀어서 폴더명을 yolov8변경하고 <strong>C:\train_data\yolov8</strong> 에 위치하도록 두기 <br>
+    예시 : 
+    ![image](https://github.com/Wjfjs/Capstone/assets/148942623/12502d9b-8dc0-4bf3-83af-ecb4c32fc2c6)
+
     <a href="https://github.com/Wjfjs/Capstone/files/15374315/requirements.txt">requirements.txt</a><br>
     위 txt 파일 다운로드 후 <strong>C:\train_data\yolov8</strong> 안에 투척 <br><br>
     <h3>학습할 데이터 사진 넣기</h3><br>
