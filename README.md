@@ -34,7 +34,7 @@
     <h3>아나콘다 환경변수 설정</h3><br>
     시스템 속성 → 고급 → 환경변수 → 시스템 변수 → Path 더블클릭 <br>
     C:\Users\느그사용자폴더\miniconda3\Scripts 추가하고 확인 <br>
-    cmd를 <strong>관리자 권한</strong>으로 실행
+    cmd를 <b>관리자 권한</b>으로 실행
     
     
     
