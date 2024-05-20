@@ -49,7 +49,7 @@
     모델 명 참고<br>
     <img src="https://github.com/Wjfjs/Capstone/assets/148942623/d2611bdd-7166-44c8-ba44-35eecfa173ab"><br>
     epoch는 학습 횟수이다. 이것도 해보고 알잘딱으로 알아서 하셈 ㅅㄱ<br>
-    (필자는 100~400정도로 했음, 모델이 x쪽으로 가까울수록 횟수는 적게 하셈)<br>
+    (필자는 100~400정도로 했음, 모델이 x쪽으로 가까울수록 횟수는 적게 하셈)<br><br>
     학습이 완료되었다면, <strong>C:\train_data\yolov8\runs\detect</strong> 폴더 안에 train 폴더가 생성되었을것이다.<br>
     너가 학습을 할때마다 뒤에 번호가 붙으면서 폴더가 생성될거임. train1, train2 이런식으로 ㅇㅇ <br>
     학습을 완료할때마다 마지막에 나오는 정보를 꼭 확인하자. 거기에 너가 나중에 쓸 모델 경로가 있다. <br><br>
