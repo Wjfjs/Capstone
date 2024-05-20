@@ -1,4 +1,4 @@
-<header>
+[requirements.txt](https://github.com/Wjfjs/Capstone/files/15374315/requirements.txt)<header>
   <h1>안녕하세요! 만나서 반가워요!</h1>
 </header>
 <body>
@@ -23,12 +23,54 @@
     C:\train_data\labels\YOLODataset <br>
     모두 생성해주기 <br><br>
     <h3>Ultralytics 폴더 다운로드</h3><br>
+    <a href="https://github.com/ultralytics/ultralytics">무료다운로드</a> <br>
+    [Uploading requiremen# Ultralytics requirements
+# Usage: pip install -r requirements.txt
+
+# Base ----------------------------------------
+matplotlib>=3.2.2
+opencv-python>=4.6.0
+Pillow>=7.1.2
+PyYAML>=5.3.1
+requests>=2.23.0
+scipy>=1.4.1
+torch>=1.7.0
+torchvision>=0.8.1
+tqdm>=4.64.0
+
+# Logging -------------------------------------
+# tensorboard>=2.13.0
+# dvclive>=2.11.0
+# clearml
+# comet
+
+# Plotting ------------------------------------
+pandas>=1.1.4
+seaborn>=0.11.0
+
+# Export --------------------------------------
+# coremltools>=6.0  # CoreML export
+# onnx>=1.12.0  # ONNX export
+# onnxsim>=0.4.1  # ONNX simplifier
+# nvidia-pyindex  # TensorRT export
+# nvidia-tensorrt  # TensorRT export
+# scikit-learn==0.19.2  # CoreML quantization
+# tensorflow>=2.4.1  # TF exports (-cpu, -aarch64, -macos)
+# tflite-support
+# tensorflowjs>=3.9.0  # TF.js export
+# openvino-dev>=2022.3  # OpenVINO export
+
+# Extras --------------------------------------
+psutil  # system utilization
+# thop>=0.1.1  # FLOPs computation
+# ipython  # interactive notebook
+# albumentations>=1.0.3
+# pycocotools>=2.0.6  # COCO mAP
+# roboflow
+ts.txt…]()
+
     
     
   </div>
-  <div>
-    <h3>앞으로의 계획</h3><br>
-    데이터셋의 완전하지 않은 모양의 차량을 제거<br>
-    더 많고 다양한 양의 동영상으로 라벨 표시
-  </div>
+  
 </body>
