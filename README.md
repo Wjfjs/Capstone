@@ -21,7 +21,7 @@
     <a href="https://github.com/Wjfjs/Capstone/files/15374315/requirements.txt">requirements.txt</a><br>
     위 txt 파일 다운로드 후 <strong>C:\train_data\yolov8</strong> 안에 투척 <br><br>
     <h3>학습할 데이터 사진 넣기</h3><br>
-    <strong>C:\train_data</strong> 안에 동영상에서 추출한 사진 넣기
+    <strong>C:\train_data</strong> 안에 동영상에서 추출한 사진 넣기<br>
     <h3>아나콘다 환경변수 설정</h3><br>
     시스템 속성 → 고급 → 환경변수 → 시스템 변수 → Path 더블클릭 <br>
     C:\Users\느그사용자폴더\miniconda3\Scripts 추가하고 확인 <br>
