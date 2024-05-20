@@ -12,6 +12,7 @@
     <h3>아나콘다 프로필? 생성</h3><br>
     conda create -n labelme python=3.9 <br>
     conda activate labelme <br><br>
+    
     <h3>라이브러리 설치</h3><br>
     pip install labelme <br>
     pip install labelme2yolo <br>
@@ -30,7 +31,7 @@
     <h3>아나콘다 환경변수 설정</h3><br>
     시스템 속성 → 고급 → 환경변수 → 시스템 변수 → Path 더블클릭 <br>
     C:\Users\느그사용자폴더\miniconda3\Scripts 추가하고 확인 <br>
-    cmd를 <b>관리자 권한</b> 으로 실행
+    cmd를 <strong>관리자 권한</strong> 으로 실행
   </div>
   
 </body>
