@@ -43,7 +43,7 @@
     다했으면 labelme 창을 닫은 후 cmd에 아래 명령어 입력 <br>
     <pre><code>labelme2yolo --json_dir C:\train_data\labels --val_size 0.15 --test_size 0.15</code></pre>
     <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre>
-    바로 위 코드에서 중요한 부분이 `model=yolov8n.pt`와 `epochs=100` 이 부분인데,
+    바로 위 코드에서 중요한 부분이 <strong>model=yolov8n.pt</strong>와 <strong>epochs=100</strong>이 부분인데,
     
     
     
