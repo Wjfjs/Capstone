@@ -1,4 +1,4 @@
-[requirements.txt](https://github.com/Wjfjs/Capstone/files/15374315/requirements.txt)<header>
+<header>
   <h1>안녕하세요! 만나서 반가워요!</h1>
 </header>
 <body>
@@ -23,8 +23,8 @@
     C:\train_data\labels\YOLODataset <br>
     모두 생성해주기 <br><br>
     <h3>Ultralytics 폴더 다운로드</h3><br>
-    <a href="https://github.com/ultralytics/ultralytics">무료다운로드</a> <br><br>
-    
+    <a href="https://github.com/ultralytics/ultralytics">무료다운로드</a> <br>
+    [requirements.txt](https://github.com/Wjfjs/Capstone/files/15374315/requirements.txt)<br>
 
     
     
