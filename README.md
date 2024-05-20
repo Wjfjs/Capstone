@@ -41,10 +41,10 @@
     File List에서 이미지 선택 <br>
     컨트롤 + R 눌러서 직사각형으로 자동차 선택(시작점하고 끝점클릭), label 이름 지정 <br>
     <strong>※완전한 모양의 자동차만 선택할것※</strong> <br>
-    json 파일은 C:\train_data\labels 폴더 안에 모아주자. <br>
-    다했으면 labelme 창을 닫은 후 cmd에 아래 명령어 입력 <br>
+    json 파일은 <strong>C:\train_data\labels</strong> 폴더 안에 모아주자. <br>
+    다했으면 labelme 창을 닫은 후 cmd에 아래 명령어 입력 <br><br>
     <pre><code>labelme2yolo --json_dir C:\train_data\labels --val_size 0.15 --test_size 0.15</code></pre>
-    <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre>
+    <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre><br>
     바로 위 코드에서 중요한 부분이 <strong>model=yolov8n.pt</strong>와 <strong>epochs=100</strong>이 부분인데, model을 알잘딱으로 찾아서 변경하시오 (필자는 m이나 s로 함)<br>
     모델 명 참고<br>
     <img src="https://github.com/Wjfjs/Capstone/assets/148942623/d2611bdd-7166-44c8-ba44-35eecfa173ab"><br>
