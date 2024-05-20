@@ -51,3 +51,6 @@
   </div>
   
 </body>
+```
+    labelme2yolo --json_dir C:\train_data\labels --val_size 0.15 --test_size 0.15
+    ```
