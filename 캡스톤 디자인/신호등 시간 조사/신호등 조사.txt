@@ -1,0 +1,5 @@
+횡단보도 7초
+횡단 보도 길이 1m +1초
+
+횡단보도 시간, 지역, 차선 빅데이터 사이트
+https://www.data.go.kr/tcs/dss/selectStdDataDetailView.do
