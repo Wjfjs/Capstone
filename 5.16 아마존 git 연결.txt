@@ -1,6 +1,25 @@
 aws db 아이디,비밀번호
-cuty
-cutypretty
+admin
+asdf1234
+
+db 테이블과 테이블열들 이름, 제약조건
+CREATE TABLE Road (
+    RoadNumber INT PRIMARY KEY,
+    TrafficVolume INT,
+    Time DATETIME,
+    Date DATE
+);
+
+CREATE TABLE Log (
+    LogNumber INT PRIMARY KEY,
+    ChangeTime DATETIME,
+    ChangeContent TEXT
+);
+
+CREATE TABLE TrafficLight (
+    TrafficLightID INT PRIMARY KEY AUTO_INCREMENT,
+    CurrentState VARCHAR(100)
+);
 
 닉네임 rinotom
 이메일 rhkddns2084@gmail.com
