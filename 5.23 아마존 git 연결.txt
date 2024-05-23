@@ -6,7 +6,7 @@ asdf1234
 host: 220.69.36.251/32;
 user:admin;
 password:asdf1234;
-database mydatabase;
+database:mydatabase;
 
 
 db 테이블과 테이블열들 이름, 제약조건
