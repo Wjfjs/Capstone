@@ -1,0 +1,5 @@
+train: C:\train_data\labels\YOLODataset/images/train/
+val: C:\train_data\labels\YOLODataset/images/val/
+test: C:\train_data\labels\YOLODataset/images/test/
+nc: 2
+names: ["stopLine", "crossWalk"]
