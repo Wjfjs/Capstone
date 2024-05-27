@@ -10,17 +10,22 @@ database:mydatabase;
 
 
 db 테이블과 테이블열들 이름, 제약조건
-CREATE TABLE Road (
-    RoadNumber INT PRIMARY KEY,
-    TrafficVolume INT,
-    Time DATETIME,
-    Date DATE
+
+CREATE TABLE TrafficLight (
+    TrafficLightID INT PRIMARY KEY,  
+    Color INT NOT NULL,                     
+    Sequence VARCHAR(10) NOT NULL,                          
+    ColorTime INT NOT NULL                           
 );
 
-CREATE TABLE Log (
-    LogNumber INT PRIMARY KEY,
-    ChangeTime DATETIME,
-    ChangeContent TEXT
+CREATE TABLE TrafficSignals (
+    SignalControlNumber VARCHAR(50) PRIMARY KEY,
+    City VARCHAR(50),
+    District VARCHAR(50),
+    RouteNumber VARCHAR(10),
+    RouteName VARCHAR(100),
+    RouteDirection VARCHAR(50),
+    Address VARCHAR(200)
 );
 
 //차량 카운트 기록
@@ -30,10 +35,6 @@ create table count (
     count int default 0
 );
 
-CREATE TABLE TrafficLight (
-    TrafficLightID INT PRIMARY KEY AUTO_INCREMENT,
-    CurrentState VARCHAR(100)
-);
 
 닉네임 rinotom
 이메일 rhkddns2084@gmail.com
