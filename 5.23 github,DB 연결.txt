@@ -25,8 +25,8 @@ CREATE TABLE Log (
 
 //차량 카운트 기록
 create table count (
-	id int AUTO_INCREMENT PRIMARY KEY,
-    date date,
+    id int AUTO_INCREMENT PRIMARY KEY,
+    date TIMESTAMP,
     count int default 0
 );
 
