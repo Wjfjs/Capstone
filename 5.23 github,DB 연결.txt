@@ -23,6 +23,13 @@ CREATE TABLE Log (
     ChangeContent TEXT
 );
 
+//차량 카운트 기록
+create table count (
+	id int AUTO_INCREMENT PRIMARY KEY,
+    date date,
+    count int default 0
+);
+
 CREATE TABLE TrafficLight (
     TrafficLightID INT PRIMARY KEY AUTO_INCREMENT,
     CurrentState VARCHAR(100)
