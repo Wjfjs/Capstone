@@ -35,6 +35,29 @@ create table count (
     count int default 0
 );
 
+도로
+City: 시도명
+District: 시군구명
+RouteNumber: 도로노선번호
+RouteName: 도로노선명
+RouteDirection: 도로노선방향
+Address: 소재지지번주소
+SignalControlNumber: 신호등관리번호
+
+
+신호등
+TrafficLightID: 각 신호등의 고유 번호, 기본 키로 설정되어 있으며 자동으로 증가합니다.
+Color: 신호등의 색상 (빨강, 초록, 노랑 등).
+Sequence: 신호등화 순서, 각 색상이 나타나는 순서를 지정합니다.
+ColorTime: 각 색상이 유지되는 시간을 초 단위로 표시합니다.
+
+
+카운트
+ID 카운트 번호
+date 인식 날짜
+카운트 차량수
+
+
 
 닉네임 rinotom
 이메일 rhkddns2084@gmail.com
