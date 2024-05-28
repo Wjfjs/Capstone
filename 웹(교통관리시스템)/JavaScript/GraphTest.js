@@ -1,7 +1,3 @@
-const db = require('./Connect_DB');
-
-db.Connect();
-
 document.addEventListener('DOMContentLoaded', function () {
     var ctx = document.getElementById('hour-graph').getContext('2d');
     var chart = new Chart(ctx, {
