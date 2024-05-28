@@ -62,5 +62,12 @@
     이걸 성공했다면 <strong>C:\train_data\yolov8\runs\detect</strong> 폴더 안에 predict 폴더가 생성되었을것이다.<br>
     이것도 계속 하면 폴더 뒤에 번호가 붙어서 생성된다. <br>
   </div>
+  <div>
+    <h3>Flask를 이용한 웹에서 실시간 Yolo 객체 감지 영상 띄우기</h3><br>
+    <a href="https://github.com/gamalahmed3265/Flask-Yolov8">무료 따운로드</a>
+    <pre><code>pip install flask</code></pre>
+    <pre><code>pip install supervision=0.3.0</code></pre>
+    꼭 하기
+  </div>
   
 </body>
