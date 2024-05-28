@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹캠 영상 띄우기</title>
+</head>
+<body>
+    <video id="webcamVideo" autoplay></video>
+
+    <script>
+        // 비디오 요소 가져오기
+        const webcamVideo = document.getElementById('webcamVideo');
+
+        // 비디오 스트림 가져오기
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                webcamVideo.srcObject = stream;
+            })
+            .catch((error) => {
+                console.error('웹캠 영상을 가져오는 중 오류가 발생했습니다.', error);
+            });
+    </script>
+</body>
+</html>

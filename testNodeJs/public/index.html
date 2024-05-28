@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹캠 영상 송수신</title>
+    <style>
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <video id="videoElement" autoplay></video>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        const serverAddress = 'http://http://localhost:5555';
+        const socket = io(serverAddress);
+        const videoElement = document.getElementById('videoElement');
+
+        // 비디오 스트림 가져오기
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                videoElement.srcObject = stream;
+                // 영상 데이터를 서버로 전송 (한 번만 실행)
+                const canvas = document.createElement('canvas');
+                canvas.width = videoElement.videoWidth;
+                canvas.height = videoElement.videoHeight;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                const data = canvas.toDataURL('image/jpeg');
+                socket.emit('videoData', data);
+            })
+            .catch((error) => {
+                console.error('비디오 스트림을 가져오는 중 오류가 발생했습니다.', error);
+            });
+
+        // 서버로부터 받은 영상 데이터를 화면에 출력
+        socket.on('videoData', (data) => {
+            const img = new Image();
+            img.src = data;
+            document.body.appendChild(img);
+        });
+    </script>
+</body>
+</html>
