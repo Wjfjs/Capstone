@@ -19,9 +19,10 @@ context = zmq.Context()
 socket = context.socket(zmq.PUB)
 socket.bind("tcp://*:5555")
 
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
 
-model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt')
+model = YOLO('C:/Users/315/runs/detect/train17/weights/best.pt')
+#model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt')
 #model = YOLO('yolov8/runs/detect/train9/weights/best.pt') # 모델
 tracker = DeepSort(max_age=50)
 cap = cv2.VideoCapture("test2.mp4") #캠 설정 기본 캠이 0,  비디오 경로 넣어도됨 "test.mp4"
