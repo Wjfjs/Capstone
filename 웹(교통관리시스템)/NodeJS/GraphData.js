@@ -1,27 +1,35 @@
-// 필요한 모듈 가져오기
-const mysql = require('mysql');
-
-const { Connect, Close, Query } = require('./Connect_DB'); // Connect_DB.js 파일의 모듈 가져오기
 
 
-// 데이터 가져오는 함수
-function fetchData(callback) {
-    const query = 'SELECT count FROM count'; // 적절한 쿼리 작성
-    connection.query(query, (error, results) => {
-        if (error) {
-            callback(error, null);
-            return;
+
+function handleResult(result) {
+    // 결과의 첫 번째 행에서 열 이름을 추출하여 columns 배열에 저장합니다.
+    let columns = [];
+    // 각 열의 데이터를 저장할 2차원 배열을 생성합니다.
+    let columnData = [];
+    if (Array.isArray(result)) {
+        console.log('쿼리 결과:');
+        for (let column in result[0]) {
+            columns.push(column);
         }
-        const dataArray = results.map(row => {
-            // 여기서 각 행(row)을 원하는 형식으로 가공하여 배열에 저장할 수 있습니다.
-            return {
-                count: row.count
-                // 필요한 다른 데이터도 추가할 수 있습니다.
-            };
+        console.log('열 이름:', columns);
+      
+        // 각 행에서 각 열의 데이터를 추출하여 columnData 배열에 저장합니다.
+        result.forEach(row => {
+            columns.forEach(column => {
+                columnData.push(row[column]);
+            });
         });
-        callback(null, dataArray); // 가공된 데이터 배열을 콜백 함수에 전달
-    });
-}
+    //   console.log('열 데이터:', columnData);
 
-// 모듈 내보내기
-module.exports = fetchData;
+      return columnData;
+    } else {
+      console.log('쿼리 결과:', result);
+    }
+}
+// 쿼리 실행
+// db.Query(query, handleResult);
+
+module.exports = {
+    //columnData: columnData
+    handleResult: handleResult
+};
