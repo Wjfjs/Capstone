@@ -57,6 +57,15 @@ ID 카운트 번호
 date 인식 날짜
 카운트 차량수
 
+//대용량 데이터 삽입
+LOAD DATA INFILE 'C:\Users\315\Desktop\uploads\Gokseong.csv'
+INTO TABLE TrafficSignals
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(City, District, RouteNumber, RouteName, RouteDirection,Address,SignalControlNumber);
+
 
 
 닉네임 rinotom
