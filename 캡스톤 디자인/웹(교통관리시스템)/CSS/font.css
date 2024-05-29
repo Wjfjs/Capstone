@@ -16,5 +16,11 @@
 }
 
 * {
+    font-family: 'nanum_gothic';
+    font-weight: bold;
+}
+
+#Logo, #hvr-icon-forward{
     font-family: 'Dovemayo_gothic';
+    font-weight: normal;
 }
