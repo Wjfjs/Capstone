@@ -21,7 +21,7 @@ socket.bind("tcp://*:5555")
 
 #cap = cv2.VideoCapture(0)
 
-model = YOLO('C:/Users/315/runs/detect/train17/weights/best.pt')
+model = YOLO('run/best.pt')
 #model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt')
 #model = YOLO('yolov8/runs/detect/train9/weights/best.pt') # 모델
 tracker = DeepSort(max_age=50)
