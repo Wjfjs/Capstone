@@ -54,7 +54,6 @@
     <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre>
     위에꺼 말고 아래꺼 추천<br><br>
     <pre><code>yolo task=detect mode=train epochs=50 imgsz=640 data=yaml위치 model=yolov8s.pt device=0</code></pre><br>
-    
     바로 위 코드에서 중요한 부분이 <strong>model=yolov8n.pt</strong>와 <strong>epochs=100</strong>이 부분인데, model을 알잘딱으로 찾아서 변경하시오 (필자는 m이나 s로 함)<br>
     모델 명 참고<br>
     <img src="https://github.com/Wjfjs/Capstone/assets/148942623/d2611bdd-7166-44c8-ba44-35eecfa173ab"><br>
