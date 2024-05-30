@@ -1,6 +1,7 @@
 aws db 아이디,비밀번호
 admin
 asdf1234
+ce2146
 
 연결 주소
 host: 192.168.1.3
