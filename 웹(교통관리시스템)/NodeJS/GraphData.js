@@ -1,6 +1,3 @@
-
-
-
 function handleResult(result) {
     // 결과의 첫 번째 행에서 열 이름을 추출하여 columns 배열에 저장합니다.
     let columns = [];
