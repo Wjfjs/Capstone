@@ -44,7 +44,16 @@
     json 파일은 <strong>C:\train_data\labels</strong> 폴더 안에 모아주자. <br>
     다했으면 labelme 창을 닫은 후 cmd에 아래 명령어 입력 <br><br>
     <pre><code>labelme2yolo --json_dir C:\train_data\labels --val_size 0.15 --test_size 0.15</code></pre>
-    <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre><br>
+    위에 명령을 입력하면 dataset.yaml이 생성됨.<br><br>
+    아래 명령어를 입력하여 version 3개 모두 뒤에 +cu118있는지 확인<br>
+    <pre><code>pip show torch torchvision torchaudio</code></pre>
+    없으면아래 명령어 실행<br>
+    <pre><code>pip uninstall torch torchvision torchaudio</code></pre>
+    <pre><code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118</code></pre>
+    이제 학습을 시작할거임<br>
+    <pre><code>yolo detect train data=C:\train_data\labels\YOLODataset\dataset.yaml model=yolov8n.pt epochs=100 imgsz=640</code></pre>
+    위에꺼 말고 아래꺼 추천<br><br>
+    <pre><code>yolo task=detect mode=train epochs=50 imgsz=640 data=yaml위치 model=yolov8s.pt device=0</code></pre><br>
     바로 위 코드에서 중요한 부분이 <strong>model=yolov8n.pt</strong>와 <strong>epochs=100</strong>이 부분인데, model을 알잘딱으로 찾아서 변경하시오 (필자는 m이나 s로 함)<br>
     모델 명 참고<br>
     <img src="https://github.com/Wjfjs/Capstone/assets/148942623/d2611bdd-7166-44c8-ba44-35eecfa173ab"><br>
