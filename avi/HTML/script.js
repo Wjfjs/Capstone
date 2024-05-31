@@ -1,12 +1,60 @@
 var currentLight1 = 0;
 var currentLight2 = 0;
+const durations = [] //신호등 변하는 시간
+const durations2 = [] //신호등 변하는 시간
 
 const lights = ["red", "yellow", "green"];
+async function GetTime(){
+    try {
+        const responses = await fetch('/TimeAlgorithm', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        if (!responses.ok) {
+            throw new Error('서버 응답 실패');
+        }
+        const result = await responses.json();
 
 
+        console.log('처리된 데이터:', result);
 
-const durations = []//[7000, 8000, 5000]; // 각 불의 지속 시간 (밀리초)
-const durations2 = []//[7000, 5000, 8000]
+        function displayResult(resultIndex, resultValue) {
+            const resultContainer = document.getElementById(`result${resultIndex}`);
+            resultContainer.textContent = JSON.stringify(resultValue['ColorTime']);
+            resultContainer.innerHTML += "  ";
+        }
+        
+        // 결과 출력을 위한 딜레이 설정 (밀리초 단위)
+        const delayBetweenResults = 1000;
+        
+        // 각 결과를 일정 시간 간격으로 출력
+        setTimeout(() => {
+            displayResult(1, result[0]);
+        }, delayBetweenResults * 0);
+        
+        setTimeout(() => {
+            displayResult(2, result[1]);
+        }, delayBetweenResults * 1);
+        
+        setTimeout(() => {
+            displayResult(3, result[2]);
+        }, delayBetweenResults * 2);
+
+        durations = result[0]['ColorTime'];
+        console.log('신호등 시간:', durations);
+        
+        durations = result[0]['ColorTime'];
+        console.log('신호등 시간:', durations);
+
+    } catch (error) {   
+        console.error('fetch 오류:', error);
+    }
+
+}
+
 
 function changeLight1() {
     const lightElements1 = {

@@ -1,3 +1,4 @@
+const http = require('http');
 const mysql = require('mysql');
 
 let pool = null;
@@ -7,9 +8,9 @@ function DB_Connect(){
         connectionLimit: 200,
         host: '192.168.1.3',
         user: 'dbuser192381',
-        password: 'ce1234@',
+        password: 'ce1234',
         database: 'db192381',
-        port: '32388',
+        port: '3306',
         charset: 'UTF8MB4'
     });
     console.log('데이터베이스 pool 생성');
