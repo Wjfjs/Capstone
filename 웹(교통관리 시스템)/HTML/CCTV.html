@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>AI를 이용한 교통 관리 시스템</title>
+        <link rel="stylesheet" href="CSS/AllStyle.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <link rel="stylesheet" href="CSS/CCTVStyle.css">
+        <script src="JavaScript/Location.js"></script>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center>
+            <div id="Logo-Container">
+                <div id="Logo" onclick="window.location.href = 'Main.html'">MINERVA 교통 관리 시스템</div>
+                <div id="hvr-icon-forward">
+                    메인화면으로 돌아가기
+                    <img id="hvr-icon" src="Image/icon_right_arrow.png" class="hvr-icon" />
+                </div>
+            </div>
+            <script src="JavaScript/Logo.js"></script>
+        </center>
+        <div id="Location_select">
+            <form id="select-form"> <!-- 영상 위치 선택 -->
+                <select id="Location1" onchange="updateLocation2Select()">
+                    <option value="NaN">시/군</option>
+                    <option value="1">옵션 1</option>
+                    <option value="2">옵션 2</option>
+                    <option value="3">옵션 3</option>
+                </select>
+                <select id="Location2" onchange="updateLocation3Select()">
+                    <option value="NaN">구</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="Location3" onchange="updateLocation4Select()">
+                    <option value="NaN">동/면</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="Location4">
+                    <option value="NaN">교차로</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="Location5">
+                    <option value="NaN">카메라번호</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <button type="submit">확인</button>
+            </form>
+        </div>
+        <div id="container">
+            <div id="left">
+                <div id="video">
+                    <video>
+                        <source src="192.168.1.128:5555"/>
+                    </video>
+                </div>
+            </div>
+            <div id="right">
+                <div id="Log">
+                    <table id="ControlLog">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">로그번호</th>
+                                <th>일시</th>
+                                <th style="width: 100px;">내용</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ControlLogBody">
+                            <!-- 신호 로그 -->
+                        </tbody>
+                    </table>
+                </div>
+                <script src="JavaScript/Log.js"></script> 
+                <div id="Control">
+                    <div id="TrafficLight">
+                        <button id="RedLight" class="TrafficControl"></button>
+                        <button id="YellowLight" class="TrafficControl"></button>
+                        <button id="GreenLight" class="TrafficControl"></button>
+                        <button id="ConfirmLight" class="TrafficControl"></button>
+                    </div>
+                </div>
+                <script src="JavaScript/TrafficControl.js"></script> 
+            </div>
+        </div>
+    </body>
+</html>
