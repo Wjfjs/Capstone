@@ -13,30 +13,31 @@ database: db192381
 db 테이블과 테이블열들 이름, 제약조건
 
 CREATE TABLE TrafficLight (
-    TrafficLightID INT PRIMARY KEY,  
+    TraffID INT auto_increment PRIMARY KEY,
+    TrafficLightID INT,  
     Color INT NOT NULL,                     
     Sequence VARCHAR(10) NOT NULL,                          
     ColorTime INT NOT NULL,
-    foreign key()
+    SignalControlNumber INT not null,
+    FOREIGN KEY (SignalControlNumber) REFERENCES location(SignalControlNumber)
 );
 
-CREATE TABLE TrafficSignals (
-    SignalControlNumber VARCHAR(50) PRIMARY KEY,
+CREATE TABLE location (
+    SignalControlNumber INT PRIMARY KEY,
     City VARCHAR(50),
     District VARCHAR(50),
     RouteNumber VARCHAR(10),
     RouteName VARCHAR(100),
     RouteDirection VARCHAR(50),
     Address VARCHAR(200)
-    foreign key()
 );
 
-//차량 카운트 기록
 create table countFirst (
     id int AUTO_INCREMENT PRIMARY KEY,
     date TIMESTAMP,
-    count int default 0
-    foreign key()
+    count int default 0,
+    TraffID INT not null,
+    FOREIGN KEY (TraffID) REFERENCES TrafficLight(TraffID)
 );
 
 도로
