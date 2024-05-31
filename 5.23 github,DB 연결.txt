@@ -16,7 +16,8 @@ CREATE TABLE TrafficLight (
     TrafficLightID INT PRIMARY KEY,  
     Color INT NOT NULL,                     
     Sequence VARCHAR(10) NOT NULL,                          
-    ColorTime INT NOT NULL                           
+    ColorTime INT NOT NULL,
+    foreign key()
 );
 
 CREATE TABLE TrafficSignals (
@@ -27,6 +28,7 @@ CREATE TABLE TrafficSignals (
     RouteName VARCHAR(100),
     RouteDirection VARCHAR(50),
     Address VARCHAR(200)
+    foreign key()
 );
 
 //차량 카운트 기록
@@ -34,6 +36,7 @@ create table countFirst (
     id int AUTO_INCREMENT PRIMARY KEY,
     date TIMESTAMP,
     count int default 0
+    foreign key()
 );
 
 도로
