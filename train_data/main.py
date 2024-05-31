@@ -18,10 +18,10 @@ BLACK = (0, 0, 0)
 #cap = cv2.VideoCapture(0)
 
 #model = YOLO('C:/Users/315/runs/detect/train22/weights/best.pt')
-model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt')
+model = YOLO('C:/Users/315/runs/detect/train33/weights/best.pt')
 #model = YOLO('yolov8/runs/detect/train9/weights/best.pt') # 모델
 tracker = DeepSort(max_age=50)
-cap = cv2.VideoCapture("video/test3.mp4") #캠 설정 기본 캠이 0,  비디오 경로 넣어도됨 "test.mp4"
+cap = cv2.VideoCapture("video/test.mp4") #캠 설정 기본 캠이 0,  비디오 경로 넣어도됨 "test.mp4"
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
