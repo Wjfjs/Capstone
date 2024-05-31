@@ -32,13 +32,22 @@ CREATE TABLE location (
     Address VARCHAR(200)
 );
 
-create table count (
+create table countFirst (
     id int AUTO_INCREMENT PRIMARY KEY,
     date TIMESTAMP,
     count int default 0,
     TraffID INT not null,
     FOREIGN KEY (TraffID) REFERENCES TrafficLight(TraffID)
 );
+
+create table countSec (
+    id int AUTO_INCREMENT PRIMARY KEY,
+    date TIMESTAMP,
+    count int default 0,
+    TraffID INT not null,
+    FOREIGN KEY (TraffID) REFERENCES TrafficLight(TraffID)
+);
+
 
 도로 location
 City: 시도명
