@@ -36,16 +36,16 @@ create table countFirst (
     id int AUTO_INCREMENT PRIMARY KEY,
     date TIMESTAMP,
     count int default 0,
-    TraffID INT not null,
-    FOREIGN KEY (TraffID) REFERENCES TrafficLight(TraffID)
+    SignalControlNumber INT not null,
+    FOREIGN KEY (SignalControlNumber) REFERENCES TrafficLight(SignalControlNumber)
 );
 
 create table countSec (
     id int AUTO_INCREMENT PRIMARY KEY,
     date TIMESTAMP,
     count int default 0,
-    TraffID INT not null,
-    FOREIGN KEY (TraffID) REFERENCES TrafficLight(TraffID)
+    SignalControlNumber INT not null,
+    FOREIGN KEY (SignalControlNumber) REFERENCES TrafficLight(SignalControlNumber)
 );
 
 
