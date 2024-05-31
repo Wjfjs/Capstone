@@ -2,7 +2,8 @@
 import cv2 #opencv 라이브러리
 import schedule
 import base64
-import zmq
+import asyncio
+import websockets
 import db
 from ultralytics import YOLO #욜로 v8 써서 울트라리틱스에서 가져옴
 from deep_sort_realtime.deepsort_tracker import DeepSort #객체 추적 라이브러리
@@ -15,17 +16,13 @@ RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-context = zmq.Context()
-socket = context.socket(zmq.PUB)
-socket.bind("tcp://*:5555")
-
 #cap = cv2.VideoCapture(0)
 
-model = YOLO('run/best.pt')
-#model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt')
+#model = YOLO('C:/Users/315/runs/detect/train22/weights/best.pt')
+model = YOLO('C:/Users/315/runs/detect/train25/weights/best.pt')
 #model = YOLO('yolov8/runs/detect/train9/weights/best.pt') # 모델
 tracker = DeepSort(max_age=50)
-cap = cv2.VideoCapture("test2.mp4") #캠 설정 기본 캠이 0,  비디오 경로 넣어도됨 "test.mp4"
+cap = cv2.VideoCapture("video/test.mp4") #캠 설정 기본 캠이 0,  비디오 경로 넣어도됨 "test.mp4"
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
@@ -39,6 +36,7 @@ fps = 30    #캠은 15 동영상은 30
 
 out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (frame_width, frame_height))
 
+#차량 총 대수 저장 함수
 def show():
     countTime = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
     saveCount.write((countTime) + " 총 : " + str(detected_objects) + "대 \n")
@@ -46,7 +44,6 @@ def show():
 schedule.every(1).seconds.do(show)
 
 while True:
-    ret, frame = cap.read()
     start = datetime.now()
 
     ret, frame = cap.read()
@@ -122,13 +119,6 @@ while True:
     cv2.imshow('frame', frame)
 
     out.write(frame)
-
-    # 이미지를 base64 문자열로 인코딩
-    _, buffer = cv2.imencode('.jpg', frame)
-    frame_bytes = base64.b64encode(buffer)
-    
-    # 인코딩된 이미지를 문자열로 변환하여 전송
-    socket.send_string(frame_bytes.decode('utf-8'))
 
     if cv2.waitKey(1) == ord('q'): # 캠또는 비디오 종료 1 또는 q
         break

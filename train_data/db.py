@@ -1,7 +1,7 @@
 import pymysql
 
 def insert_data(date, count):
-    conn = pymysql.connect(host='192.168.1.3', user='dbuser192381', password='ce1234', db='test', charset='utf8')
+    conn = pymysql.connect(host='192.168.1.3', user='dbuser192381', password='ce1234', db='db192381', charset='utf8')
     cur = conn.cursor()
     
     query = "INSERT INTO count (date, count) VALUES (%s, %s)"
