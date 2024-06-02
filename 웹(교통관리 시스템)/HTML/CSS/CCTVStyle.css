@@ -1,0 +1,199 @@
+#container {
+    display: flex;
+    position: relative;
+}
+
+#left {
+    min-width: 1350px;
+    width: 1350px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#right {
+    min-width: 540px;
+    width: 540px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 10px;
+}
+
+#select-form{
+    margin: 0;
+}
+
+#Location_select {
+    display: flex;
+    width: 1800px;
+    margin-left: 50px;
+    margin-right: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    width: 150px;
+    height: 35px;
+    margin-right: 40px;
+    border-radius: 3px;
+    font-size: 20px;
+    border : 0.5px solid black;
+}
+button {
+    width: 150px;
+    height: 35px;
+    border-radius: 3px;
+    font-size: 20px;
+    background-color: white;
+    border : 0.5px solid black;
+}
+
+#video {
+    height: 630px;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border : 3px solid black;
+    border-radius: 30px;
+}
+#video_feed {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Dovemayo_gothic';
+}
+#errorText {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Dovemayo_gothic';
+}
+
+#Log {
+    margin-top: 50px;
+    min-width: 500px;
+    height: 500px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Control {
+    min-width: 500px;
+    height: 200px;
+    margin-right: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* 테이블 스타일 */
+
+#ControlLog {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+}
+
+#ControlLog th, #ControlLog td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+#ControlLog th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: center;
+}
+
+#ControlLog tr:nth-child(even) {
+    background-color: #f2f2f2; /* 짝수 번째 행 배경색 */
+}
+
+#ControlLog tr:nth-child(odd) {
+    background-color: #ffffff; /* 홀수 번째 행 배경색 */
+}
+
+#ControlLog tr:hover {
+    background-color: #ddd;
+}
+
+.LogNum {
+    font-size: 17px;
+    text-align: center;
+}
+
+/* 신호 제어 */
+
+#TrafficLight {
+    width: 500px;
+    height: 120px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    background-color: #242424;
+}
+
+#RedLight {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    background-color: gray;
+    margin-right: 30px;
+}
+
+#YellowLight {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    background-color: gray;
+    margin-right: 30px;
+    font-family: 'Dovemayo_gothic';
+}
+
+#GreenLight {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    background-color: gray;
+    margin-right: 30px;
+}
+
+#ConfirmLight {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    background-color: white;
+}
+
+.TrafficControl:hover{
+    cursor: pointer;
+}
