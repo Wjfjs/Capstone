@@ -14,13 +14,15 @@ RED = (0, 0, 255)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt') # 모델
+#model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt') # 모델
+model = YOLO('yolov8n.pt') # 모델
 tracker = DeepSort(max_age=50)
 
 
 
 async def send_video(websocket, path):
-    cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('video/test.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
     
