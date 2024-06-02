@@ -11,6 +11,8 @@ var fs = require('fs');
 
 const port = 8003;
 const hostname = 'localhost';
+//const hostname = 'ec2-3-38-185-186.ap-northeast-2.compute.amazonaws.com'; //이건 AWS
+//const hostname = 'http://azza.gwangju.ac.kr'; //이건 azza
 
 app.use(cors());
 app.use(express.static('HTML'))
@@ -57,6 +59,7 @@ app.post('/hourData', async (req, res) => {
 // 일별데이터
 app.post('/dayData', async (req, res) => {
     //const query = "SELECT DATE_FORMAT(date, '%Y-%m-%d') AS day_interval, sum(count) AS count FROM count GROUP BY DATE_FORMAT(date, '%Y-%m-%d');";
+    const query = "SELECT count FROM countFirst";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
