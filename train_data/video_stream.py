@@ -1,9 +1,11 @@
 import cv2
+import schedule
 import base64
 import asyncio
 import websockets
-import datetime # 객체추적 시간재는거였나
+from datetime import datetime
 import cv2 #opencv 라이브러리
+import db #db.py 불러옴
 from ultralytics import YOLO #욜로 v8 써서 울트라리틱스에서 가져옴
 from deep_sort_realtime.deepsort_tracker import DeepSort #객체 추적 라이브러리
 
@@ -25,9 +27,26 @@ async def send_video(websocket, path):
     cap = cv2.VideoCapture('video/test.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
+
+    #분석 영상 저장
+    current_datetime = datetime.now().strftime("%Y-%m-%d_%H-%M")  
+    output_video_path = f'outPutVideo/output_video_{current_datetime}.mp4'
+
+    frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    fps = 30    #캠은 15 동영상은 30
+
+    out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (frame_width, frame_height))
+
+    #차량 총 대수 저장 함수
+    def show():
+        countTime = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        saveCount.write((countTime) + " 총 : " + str(detected_objects) + "대 \n")
+
+    schedule.every(1).seconds.do(show)
     
     while cap.isOpened():
-        start = datetime.datetime.now()
+        start = datetime.now()
 
         ret, frame = cap.read()
         if not ret:
@@ -41,6 +60,11 @@ async def send_video(websocket, path):
         detection = model(frame)[0]
 
         detected_objects = 0 #객체 인식된 숫자
+
+        #차량 총 카운트 메모장 저장 경로 지정
+        count_datetime = datetime.now().strftime("%Y-%m-%d_%H")
+        countLog_path = f'countLog/{count_datetime}.txt'
+        saveCount = open(countLog_path,"a")
 
         for data in detection.boxes.data.tolist():
             confidence = float(data[4])
@@ -66,7 +90,7 @@ async def send_video(websocket, path):
             cv2.rectangle(frame, (xmin, ymin - 20), (xmin + 20, ymin), GREEN, -1)
             cv2.putText(frame, str(track_id), (xmin + 5, ymin - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.5, WHITE, 2)
             
-        end = datetime.datetime.now()
+        end = datetime.now()
 
         total = (end - start).total_seconds()
         # print(f'1 프레임을 처리하는 데 걸린 시간: {total * 1000:.0f} 밀리초')
@@ -85,6 +109,9 @@ async def send_video(websocket, path):
 
 
         print(f'총인원: {detected_objects} 명')
+
+        schedule.run_pending() #카운트 메모 스케줄
+
         cv2.putText(frame, f'total population : {detected_objects}', (10, 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, GREEN, 2)
 
         cv2.imshow('frame', frame)
@@ -97,6 +124,8 @@ async def send_video(websocket, path):
         if cv2.waitKey(1) == ord('q'): # 캠또는 비디오 종료 1 또는 q
             break
 
+    saveCount.close()
+    db.saveCountData(count_datetime)
     cap.release()
     cv2.destroyAllWindows()
 
