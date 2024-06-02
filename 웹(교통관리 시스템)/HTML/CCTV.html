@@ -48,13 +48,23 @@
         <div id="container">
             <div id="left">
                 <div id="video">
-                    <img id="video_feed" src="#" alt="Webcam Stream" />
+                    <img id="video_feed" src="" alt="신호 없음" />
+                    <p id="errorText"></p>
                         <script>
                             var socket = new WebSocket("ws://localhost:8555");
-
+                            
                             socket.onmessage = function(event) {
                                 var img = document.getElementById('video_feed');
                                 img.src = 'data:image/jpg;base64,' + event.data;
+                            };
+
+                            socket.onerror = function(event) {
+                                var img = document.getElementById('video_feed');
+                                img.src = 'Image/error.png';
+                                img.style.width = '300px';
+                                img.style.height = 'auto';
+                                var errorText = document.getElementById('errorText');
+                                errorText.textContent = '연결 실패';
                             };
                         </script>
                 </div>

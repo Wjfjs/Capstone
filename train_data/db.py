@@ -18,6 +18,8 @@ def saveCountData(count_datetime):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
+    inputCount = 0
+
     # 각 줄에서 날짜와 총 대수 추출 및 데이터베이스에 저장
     for line in lines:
         # 줄을 공백을 기준으로 분할하여 날짜와 총 대수 추출
@@ -27,4 +29,6 @@ def saveCountData(count_datetime):
         
         # 데이터베이스에 데이터 삽입
         insert_data(date, count)
-        print("데이터 삽입이 완료되었습니다.")
+        inputCount += 1
+        
+    print(f"총 : {inputCount} 개의 데이터 삽입이 완료되었습니다.")
