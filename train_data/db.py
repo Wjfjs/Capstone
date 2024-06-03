@@ -5,7 +5,7 @@ def insert_data(date, count):
     cur = conn.cursor()
     
     query = "INSERT INTO countFirst (date, count, SignalControlNumber) VALUES (%s, %s, %s)"
-    values = (date, count, 15)
+    values = (date, count, 16)
     
     cur.execute(query, values)
     

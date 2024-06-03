@@ -210,7 +210,7 @@ async function init(){
 
 async function countAlgorithm(){
     //시간 계산 알고리즘
-    if ((count1+count2) < 10) {
+    if ((count1+count2) > 5) {
         // 최대 할당 시간을 20초로 설정
         var maxTime = 20;
 
@@ -276,7 +276,7 @@ function changeLight1() {
     lightElements1[light].classList.add(light);
 
     currentLight1 = (currentLight1 + 1) % lights.length;
-    setTimeout(changeLight1, durations[currentLight1]*1000);
+    setTimeout(changeLight1, durations[currentLight1]*100); //기본 1000
 }
 // 2번째 신호등 불 켜지는 알고리즘
 function changeLight2() {
@@ -296,6 +296,6 @@ function changeLight2() {
     lightElements2[light].classList.add(light);
     currentLight2 = (currentLight2 + 1) % lights.length;
 
-    setTimeout(changeLight2, durations2[currentLight2]*1000);
+    setTimeout(changeLight2, durations2[currentLight2]*100); //기본 1000
 }
 
