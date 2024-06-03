@@ -63,7 +63,7 @@ app.post('/testData', (req, res) => {
 });
 
 app.post('/TimeAlgorithm', async (req, res) => {
-    const query = `SELECT ColorTime 
+    const query = `SELECT TraffID,ColorTime 
     FROM TrafficLight
     WHERE (Sequence LIKE '녹%' OR Sequence LIKE '적%' OR Sequence LIKE '황%')
     AND TrafficLightID = 15
@@ -80,23 +80,72 @@ app.post('/TimeAlgorithm', async (req, res) => {
 	}
     console.log("데이터 확인: ", result);
 	res.send(result);
-    
-    // const query = 'SELECT ColorTime from TrafficLight where TraffID <= 1';
-    // try {
-    //     const data = await new Promise((resolve, reject) => {
-    //         database.Query(query, result => {
-    //             // const TimeData = TD.TimeResult(result); // 데이터 처리
-    //             const TimeData = result;
-    //             console.log("데이터 확인: ", TimeData);
+})
 
-    //             resolve(TimeData);
-    //         });
-    //     });
-    //     res.send(data);
-    // } catch (error) {
-    //     console.error("데이터 가져오기 실패: ", error);
-    //     res.status(500).send("서버 오류");
-    // }
+app.post('/TimeAlgorithm2', async (req, res) => {
+    const query = `SELECT TraffID,ColorTime 
+    FROM TrafficLight
+    WHERE (Sequence LIKE '녹%' OR Sequence LIKE '적%' OR Sequence LIKE '황%')
+    AND TrafficLightID = 16
+    ORDER BY CASE 
+        WHEN Sequence LIKE '녹%' THEN 1
+        WHEN Sequence LIKE '적%' THEN 2
+        WHEN Sequence LIKE '황%' THEN 3
+        ELSE 4 END;`;
+	
+	const result2 = await database.Query(query, null);
+	
+	if (result2 instanceof Error) {
+		console.error(result2);
+	}
+    console.log("데이터 확인 두번재: ", result2);
+	res.send(result2);
 })
 
 
+
+
+app.post('/updateTime', async (req, res) => {
+    const query = `UPDATE TrafficLight SET ColorTime = ? WHERE TraffID = ?`;
+	const { time1, time2, tID, tID2 } = req.body;
+    const values = [time1, tID];
+    const values2 = [time2, tID2];
+    console.log(time1, time2, tID, tID2);
+	const Cntresult = await database.Query(query, values);
+	const Cntresult2 = await database.Query(query, values2);
+	if (Cntresult instanceof Error) {
+		console.error(result);
+	}
+    if (Cntresult2 instanceof Error) {
+		console.error(result);
+	}
+	res.send({Cnt: Cntresult, Cnt2: Cntresult2});
+})
+
+app.post('/count1', async (req, res) => {
+    const query = `SELECT count FROM countFirst 
+    where SignalControlNumber = 15
+    ORDER BY date DESC LIMIT 1;`;
+	
+	const result2 = await database.Query(query, null);
+	
+	if (result2 instanceof Error) {
+		console.error(result2);
+	}
+    console.log("15 카운트 수: ", result2);
+	res.send(result2);
+})
+
+app.post('/count2', async (req, res) => {
+    const query = `SELECT count FROM countFirst 
+    where SignalControlNumber = 16
+    ORDER BY date DESC LIMIT 1;`;
+	
+	const result2 = await database.Query(query, null);
+	
+	if (result2 instanceof Error) {
+		console.error(result2);
+	}
+    console.log("16 카운트 수: ", result2);
+	res.send(result2);
+})
