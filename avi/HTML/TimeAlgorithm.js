@@ -160,7 +160,7 @@ async function cntion2() {
         }
 
         const countation2 = await response.json();
-        count2 = countation1;
+        count2 = countation2;
         console.log('카운트 수:', countation2);
 
     } catch (error) {
