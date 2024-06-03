@@ -1,11 +1,13 @@
-
 async function GetGraphDataHour() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    var id = fifthSelect.value; // 카메라번호
     try {
         const response = await fetch('/hourData', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ id })
         });
         console.log(response);
         if (!response.ok) {
@@ -18,15 +20,17 @@ async function GetGraphDataHour() {
         console.error('fetch 오류:', error);
     }
 }
-GetGraphDataHour();
 
 async function GetGraphDataDay() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    var id = fifthSelect.value; // 카메라번호
     try {
         const response = await fetch('/dayData', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ id })
         });
 
         if (!response.ok) {
@@ -39,15 +43,17 @@ async function GetGraphDataDay() {
         console.error('fetch 오류:', error);
     }
 }
-GetGraphDataDay();
 
 async function GetGraphDataWeek() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    var id = fifthSelect.value; // 카메라번호
     try {
         const response = await fetch('/weekData', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ id })
         });
 
         if (!response.ok) {
@@ -60,15 +66,17 @@ async function GetGraphDataWeek() {
         console.error('fetch 오류:', error);
     }
 }
-GetGraphDataWeek();
 
 async function GetGraphDataMonth() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    var id = fifthSelect.value; // 카메라번호
     try {
         const response = await fetch('/monthData', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ id })
         });
 
         if (!response.ok) {
@@ -81,7 +89,6 @@ async function GetGraphDataMonth() {
         console.error('fetch 오류:', error);
     }
 }
-GetGraphDataMonth();
 
 async function GraphHour(result) {
     console.log(result);
@@ -89,7 +96,7 @@ async function GraphHour(result) {
     var chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'],
+            labels: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
             datasets: [{
                 label: '시간별 데이터',
                 borderColor: 'rgb(255, 99, 132)',

@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="CSS/font.css">
         <link rel="stylesheet" href="CSS/GraphStyle.css">
         <script src="JavaScript/Location.js"></script>
+        <script src="JavaScript/GraphTest.js"></script>
 
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -42,7 +43,7 @@
                     <option value="NaN">카메라번호</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <button type="submit">확인</button>
+                <button type="button" onclick="GetGraphDataHour(), GetGraphDataDay(), GetGraphDataWeek(), GetGraphDataMonth()">확인</button>
             </form>
         </div>
 
@@ -63,6 +64,5 @@
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-        <script src="JavaScript/GraphTest.js"></script>
     </body>
 </html>

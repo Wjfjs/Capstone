@@ -37,6 +37,7 @@ async function updateDistrictSelect() {
     for(var i = 0; i < result.length; i++){
         var option = document.createElement("option");
         option.text = result[i];
+        option.value = result[i];
         secondSelect.add(option);
     }
 }
@@ -97,6 +98,7 @@ async function updateRouteNameSelect() {
     for(var i = 0; i < result.length; i++){
         var option = document.createElement("option");
         option.text = result[i];
+        option.value = result[i];
         thirdSelect.add(option);
     }
 }
@@ -153,6 +155,7 @@ async function updateAddressSelect() {
     for(var i = 0; i < result.length; i++){
         var option = document.createElement("option");
         option.text = result[i];
+        option.value = result[i];
         fourthSelect.add(option);
     }
 }
@@ -205,6 +208,7 @@ async function updateSignalControlNumberSelect() {
     for(var i = 0; i < result.length; i++){
         var option = document.createElement("option");
         option.text = result[i];
+        option.value = result[i];
         fifthSelect.add(option);
     }
 }

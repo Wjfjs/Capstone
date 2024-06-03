@@ -39,7 +39,21 @@ app.listen(port, hostname, function(){
 
 // 시간데이터
 app.post('/hourData', async (req, res) => {
-    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m-%d %H')";
+    const { id } = req.body;
+    const query = "\
+    SELECT\
+        COALESCE(SUM(count), 0) AS total_count\
+    FROM\
+        (SELECT 1 AS hour UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION\
+        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION\
+        SELECT 13 UNION SELECT 14 UNION SELECT 15 UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION\
+        SELECT 19 UNION SELECT 20 UNION SELECT 21 UNION SELECT 22 UNION SELECT 23 UNION SELECT 24) AS all_hours\
+    Left JOIN\
+        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
+    ON\
+        HOUR(countFirst.date) = all_hours.hour\
+    GROUP BY\
+        all_hours.hour;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -57,7 +71,22 @@ app.post('/hourData', async (req, res) => {
 
 // 일별데이터
 app.post('/dayData', async (req, res) => {
-    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m-%d');";
+    const { id } = req.body;
+    const query = "\
+        SELECT\
+        COALESCE(SUM(count), 0) AS total_count\
+    FROM\
+        (SELECT 1 AS day UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION\
+        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION\
+        SELECT 13 UNION SELECT 14 UNION SELECT 15 UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION\
+        SELECT 19 UNION SELECT 20 UNION SELECT 21 UNION SELECT 22 UNION SELECT 23 UNION SELECT 24 UNION\
+        SELECT 25 UNION SELECT 26 UNION SELECT 27 UNION SELECT 28 UNION SELECT 29 UNION SELECT 30 UNION SELECT 31) AS all_days\
+    Left JOIN\
+        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
+    ON\
+        DAY(countFirst.date) = all_days.day\
+    GROUP BY\
+        all_days.day;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -75,8 +104,18 @@ app.post('/dayData', async (req, res) => {
 
 // 요일별데이터
 app.post('/weekData', async (req, res) => {
-    //const query = 'SELECT count FROM count';
-    const query = "SELECT count FROM countFirst";
+    const { id } = req.body;
+    const query = "\
+    SELECT\
+        COALESCE(SUM(count), 0) AS total_count\
+    FROM\
+        (SELECT 1 AS week UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7) AS all_weeks\
+    Left JOIN\
+        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
+    ON\
+        DAY(countFirst.date) = all_weeks.week\
+    GROUP BY\
+        all_weeks.week;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -94,7 +133,19 @@ app.post('/weekData', async (req, res) => {
 
 // 월별데이터
 app.post('/monthData', async (req, res) => {
-    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m');";
+    const { id } = req.body;
+    const query = "\
+    SELECT \
+        COALESCE(SUM(count), 0) AS total_count\
+    FROM \
+        (SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION \
+        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS all_months\
+    Left JOIN\
+        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
+    ON\
+        MONTH(countFirst.date) = all_months.month\
+    GROUP BY\
+        all_months.month;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
