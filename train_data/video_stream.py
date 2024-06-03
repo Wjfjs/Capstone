@@ -17,7 +17,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 #model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt') # 모델
-model = YOLO('run/best1.pt') # 모델
+model = YOLO('run/best3.pt') # 모델
 tracker = DeepSort(max_age=50)
 
 async def send_video(websocket, path):
@@ -117,7 +117,7 @@ async def send_video(websocket, path):
 
         schedule.run_pending() #카운트 메모 스케줄
 
-        cv2.putText(frame, f'TOTAL : {detected_objects}', (10, 155), cv2.FONT_HERSHEY_SIMPLEX, 1.8, GREEN, 2) #기본 위치 10, 80 / 기본 폰트 사이즈 0.5
+        cv2.putText(frame, f'TOTAL : {detected_objects}', (10, 158), cv2.FONT_HERSHEY_SIMPLEX, 1.5, GREEN, 2) #기본 위치 10, 80 / 기본 폰트 사이즈 0.5
 
         cv2.imshow('frame', frame)
 
