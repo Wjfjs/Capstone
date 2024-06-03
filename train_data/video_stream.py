@@ -23,8 +23,8 @@ tracker = DeepSort(max_age=50)
 async def send_video(websocket, path):
     totalDetObj = 0
 
-    #cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('video/test.mp4')
+    cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture('video/test.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
@@ -60,7 +60,7 @@ async def send_video(websocket, path):
         detection = model.predict(source=[frame], save=False)[0]
         results = []
 
-        cv2.rectangle(frame, (0,0), (530,180), BLACK, -1) #기본 190, 100
+        cv2.rectangle(frame, (0,0), (480,180), BLACK, -1) #기본 190, 100
         detection = model(frame)[0]
 
         detected_objects = 0 #객체 인식된 숫자
