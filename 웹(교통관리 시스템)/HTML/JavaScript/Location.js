@@ -1,153 +1,231 @@
-function updateLocation2Select() {
-    var firstSelect = document.getElementById("Location1");
-    var secondSelect = document.getElementById("Location2");
+/*********** 도 -> 시군 **********/
+async function updateDistrictSelect() {
+    var firstSelect = document.getElementById("City");
+    var secondSelect = document.getElementById("District");
+    var thirdSelect = document.getElementById("RouteName");
+    var fourthSelect = document.getElementById("Address");
+    var fifthSelect = document.getElementById("SignalControlNumber");
   
+    // 선택지 초기화
+    secondSelect.innerHTML = "";
+    thirdSelect.innerHTML = ""; 
+    fourthSelect.innerHTML = ""; 
+    fifthSelect.innerHTML = ""; 
+
+    var CityOption = document.createElement("option");
+    CityOption.text = "시/군";
+    secondSelect.add(CityOption);
+    var DistrictOption = document.createElement("option");
+    DistrictOption.text = "로";
+    thirdSelect.add(DistrictOption);
+    var RouteNameOption = document.createElement("option");
+    RouteNameOption.text = "주소";
+    fourthSelect.add(RouteNameOption);
+    var ignalControlNumberOption = document.createElement("option");
+    ignalControlNumberOption.text = "카메라번호";
+    fifthSelect.add(ignalControlNumberOption);
+
     // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
-    var selectedValue = firstSelect.value;
-    secondSelect.innerHTML = ""; // 먼저 두 번째 선택지를 초기화합니다.
+    var CityValue = firstSelect.value;
+    var DistrictValue = secondSelect.value;
+    var RouteNameValue = thirdSelect.value;
+    var AddressValue = fourthSelect.value;
+    var SignalControlNumberValue = fifthSelect.value;
 
-    var option = document.createElement("option");
-    option.text = "구";
-    secondSelect.add(option);
-
-    if (selectedValue === "1") {
-        // 첫 번째 선택지가 1일 때 두 번째 선택지를 추가합니다.
-        var option1 = document.createElement("option");
-        option1.text = "옵션 A";
-        secondSelect.add(option1);
-        var option2 = document.createElement("option");
-        option2.text = "옵션 B";
-        secondSelect.add(option2);
-    } else if (selectedValue === "2") {
-        // 첫 번째 선택지가 2일 때 두 번째 선택지를 추가합니다.
-        var option3 = document.createElement("option");
-        option3.text = "옵션 X";
-        secondSelect.add(option3);
-        var option4 = document.createElement("option");
-        option4.text = "옵션 Y";
-        secondSelect.add(option4);
-    } else if (selectedValue === "3") {
-        // 첫 번째 선택지가 3일 때 두 번째 선택지를 추가합니다.
-        var option5 = document.createElement("option");
-        option5.text = "옵션 가";
-        secondSelect.add(option5);
-        var option6 = document.createElement("option");
-        option6.text = "옵션 나";
-        secondSelect.add(option6);
+    var result = await GetLocationDataDistrict(CityValue);
+    
+    for(var i = 0; i < result.length; i++){
+        var option = document.createElement("option");
+        option.text = result[i];
+        secondSelect.add(option);
     }
 }
-function updateLocation3Select() {
-    var firstSelect = document.getElementById("Location2");
-    var secondSelect = document.getElementById("Location3");
-  
-    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
-    var selectedValue = firstSelect.value;
-    secondSelect.innerHTML = ""; // 먼저 두 번째 선택지를 초기화합니다.
-  
-    var option = document.createElement("option");
-    option.text = "동/면";
-    secondSelect.add(option);
+async function GetLocationDataDistrict(CityValue) {
+    try {
+        const response = await fetch('/DistrictData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ CityValue })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
 
-    if (selectedValue === "1") {
-        // 첫 번째 선택지가 1일 때 두 번째 선택지를 추가합니다.
-        var option1 = document.createElement("option");
-        option1.text = "옵션 A";
-        secondSelect.add(option1);
-        var option2 = document.createElement("option");
-        option2.text = "옵션 B";
-        secondSelect.add(option2);
-    } else if (selectedValue === "2") {
-        // 첫 번째 선택지가 2일 때 두 번째 선택지를 추가합니다.
-        var option3 = document.createElement("option");
-        option3.text = "옵션 X";
-        secondSelect.add(option3);
-        var option4 = document.createElement("option");
-        option4.text = "옵션 Y";
-        secondSelect.add(option4);
-    } else if (selectedValue === "3") {
-        // 첫 번째 선택지가 3일 때 두 번째 선택지를 추가합니다.
-        var option5 = document.createElement("option");
-        option5.text = "옵션 가";
-        secondSelect.add(option5);
-        var option6 = document.createElement("option");
-        option6.text = "옵션 나";
-        secondSelect.add(option6);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('fetch 오류:', error);
     }
 }
-function updateLocation4Select() {
-    var firstSelect = document.getElementById("Location3");
-    var secondSelect = document.getElementById("Location4");
-  
-    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
-    var selectedValue = firstSelect.value;
-    secondSelect.innerHTML = ""; // 먼저 두 번째 선택지를 초기화합니다.
-  
-    var option = document.createElement("option");
-    option.text = "교차로";
-    secondSelect.add(option);
 
-    if (selectedValue === "1") {
-        // 첫 번째 선택지가 1일 때 두 번째 선택지를 추가합니다.
-        var option1 = document.createElement("option");
-        option1.text = "옵션 A";
-        secondSelect.add(option1);
-        var option2 = document.createElement("option");
-        option2.text = "옵션 B";
-        secondSelect.add(option2);
-    } else if (selectedValue === "2") {
-        // 첫 번째 선택지가 2일 때 두 번째 선택지를 추가합니다.
-        var option3 = document.createElement("option");
-        option3.text = "옵션 X";
-        secondSelect.add(option3);
-        var option4 = document.createElement("option");
-        option4.text = "옵션 Y";
-        secondSelect.add(option4);
-    } else if (selectedValue === "3") {
-        // 첫 번째 선택지가 3일 때 두 번째 선택지를 추가합니다.
-        var option5 = document.createElement("option");
-        option5.text = "옵션 가";
-        secondSelect.add(option5);
-        var option6 = document.createElement("option");
-        option6.text = "옵션 나";
-        secondSelect.add(option6);
+/*********** 시군 -> 길 **********/
+
+async function updateRouteNameSelect() {
+    var firstSelect = document.getElementById("City");
+    var secondSelect = document.getElementById("District");
+    var thirdSelect = document.getElementById("RouteName");
+    var fourthSelect = document.getElementById("Address");
+    var fifthSelect = document.getElementById("SignalControlNumber");
+  
+    // 선택지 초기화
+    thirdSelect.innerHTML = ""; 
+    fourthSelect.innerHTML = ""; 
+    fifthSelect.innerHTML = "";
+
+    var DistrictOption = document.createElement("option");
+    DistrictOption.text = "로";
+    thirdSelect.add(DistrictOption);
+    var RouteNameOption = document.createElement("option");
+    RouteNameOption.text = "주소";
+    fourthSelect.add(RouteNameOption);
+    var ignalControlNumberOption = document.createElement("option");
+    ignalControlNumberOption.text = "카메라번호";
+    fifthSelect.add(ignalControlNumberOption);
+
+    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
+    var CityValue = firstSelect.value;
+    var DistrictValue = secondSelect.value;
+    var RouteNameValue = thirdSelect.value;
+    var AddressValue = fourthSelect.value;
+    var SignalControlNumberValue = fifthSelect.value;
+
+    var result = await GetLocationDataRouteName(CityValue, DistrictValue);
+
+    for(var i = 0; i < result.length; i++){
+        var option = document.createElement("option");
+        option.text = result[i];
+        thirdSelect.add(option);
     }
 }
-function updateLocation5Select() {
-    var firstSelect = document.getElementById("Location4");
-    var secondSelect = document.getElementById("Location5");
-  
-    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
-    var selectedValue = firstSelect.value;
-    secondSelect.innerHTML = ""; // 먼저 두 번째 선택지를 초기화합니다.
-  
-    var option = document.createElement("option");
-    option.text = "카메라번호";
-    secondSelect.add(option);
+async function GetLocationDataRouteName(CityValue, DistrictValue) {
+    try {
+        const response = await fetch('/RouteNameData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ CityValue, DistrictValue })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
 
-    if (selectedValue === "1") {
-        // 첫 번째 선택지가 1일 때 두 번째 선택지를 추가합니다.
-        var option1 = document.createElement("option");
-        option1.text = "옵션 A";
-        secondSelect.add(option1);
-        var option2 = document.createElement("option");
-        option2.text = "옵션 B";
-        secondSelect.add(option2);
-    } else if (selectedValue === "2") {
-        // 첫 번째 선택지가 2일 때 두 번째 선택지를 추가합니다.
-        var option3 = document.createElement("option");
-        option3.text = "옵션 X";
-        secondSelect.add(option3);
-        var option4 = document.createElement("option");
-        option4.text = "옵션 Y";
-        secondSelect.add(option4);
-    } else if (selectedValue === "3") {
-        // 첫 번째 선택지가 3일 때 두 번째 선택지를 추가합니다.
-        var option5 = document.createElement("option");
-        option5.text = "옵션 가";
-        secondSelect.add(option5);
-        var option6 = document.createElement("option");
-        option6.text = "옵션 나";
-        secondSelect.add(option6);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('fetch 오류:', error);
+    }
+}
+
+/*********** 길 -> 주소 **********/
+
+async function updateAddressSelect() {
+    var firstSelect = document.getElementById("City");
+    var secondSelect = document.getElementById("District");
+    var thirdSelect = document.getElementById("RouteName");
+    var fourthSelect = document.getElementById("Address");
+    var fifthSelect = document.getElementById("SignalControlNumber");
+  
+    // 선택지 초기화
+    fourthSelect.innerHTML = ""; 
+    fifthSelect.innerHTML = "";
+
+    var RouteNameOption = document.createElement("option");
+    RouteNameOption.text = "주소";
+    fourthSelect.add(RouteNameOption);
+    var ignalControlNumberOption = document.createElement("option");
+    ignalControlNumberOption.text = "카메라번호";
+    fifthSelect.add(ignalControlNumberOption);
+
+    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
+    var CityValue = firstSelect.value;
+    var DistrictValue = secondSelect.value;
+    var RouteNameValue = thirdSelect.value;
+    var AddressValue = fourthSelect.value;
+    var SignalControlNumberValue = fifthSelect.value;
+
+    var result = await GetLocationDataAddress(CityValue, DistrictValue, RouteNameValue);
+
+    for(var i = 0; i < result.length; i++){
+        var option = document.createElement("option");
+        option.text = result[i];
+        fourthSelect.add(option);
+    }
+}
+async function GetLocationDataAddress(CityValue, DistrictValue, RouteNameValue) {
+    try {
+        const response = await fetch('/AddressData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ CityValue, DistrictValue, RouteNameValue })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('fetch 오류:', error);
+    }
+}
+
+/*********** 주소 -> 카메라번호 **********/
+
+async function updateSignalControlNumberSelect() {
+    var firstSelect = document.getElementById("City");
+    var secondSelect = document.getElementById("District");
+    var thirdSelect = document.getElementById("RouteName");
+    var fourthSelect = document.getElementById("Address");
+    var fifthSelect = document.getElementById("SignalControlNumber");
+  
+    // 선택지 초기화
+    fifthSelect.innerHTML = "";
+
+    var ignalControlNumberOption = document.createElement("option");
+    ignalControlNumberOption.text = "카메라번호";
+    fifthSelect.add(ignalControlNumberOption);
+
+    // 첫 번째 선택지에 따라 두 번째 선택지를 동적으로 변경합니다.
+    var CityValue = firstSelect.value;
+    var DistrictValue = secondSelect.value;
+    var RouteNameValue = thirdSelect.value;
+    var AddressValue = fourthSelect.value;
+    var SignalControlNumberValue = fifthSelect.value;
+
+    var result = await GetLocationDataSignalControlNumber(CityValue, DistrictValue, RouteNameValue, AddressValue);
+
+    for(var i = 0; i < result.length; i++){
+        var option = document.createElement("option");
+        option.text = result[i];
+        fifthSelect.add(option);
+    }
+}
+async function GetLocationDataSignalControlNumber(CityValue, DistrictValue, RouteNameValue, AddressValue) {
+    try {
+        const response = await fetch('SignalControlNumberData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ CityValue, DistrictValue, RouteNameValue, AddressValue })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error('fetch 오류:', error);
     }
 }
 

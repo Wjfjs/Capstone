@@ -39,8 +39,7 @@ app.listen(port, hostname, function(){
 
 // 시간데이터
 app.post('/hourData', async (req, res) => {
-    //const query = "SELECT sum(count) AS count FROM count GROUP BY DATE_FORMAT(date, '%Y-%m-%d %H')";
-    const query = "SELECT count FROM countFirst";
+    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m-%d %H')";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -58,8 +57,7 @@ app.post('/hourData', async (req, res) => {
 
 // 일별데이터
 app.post('/dayData', async (req, res) => {
-    //const query = "SELECT DATE_FORMAT(date, '%Y-%m-%d') AS day_interval, sum(count) AS count FROM count GROUP BY DATE_FORMAT(date, '%Y-%m-%d');";
-    const query = "SELECT count FROM countFirst";
+    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m-%d');";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -96,8 +94,7 @@ app.post('/weekData', async (req, res) => {
 
 // 월별데이터
 app.post('/monthData', async (req, res) => {
-    //const query = "SELECT DATE_FORMAT(date, '%Y-%m') AS month_interval, sum(count) AS count FROM count GROUP BY DATE_FORMAT(date, '%Y-%m');";
-    const query = "SELECT count FROM countFirst";
+    const query = "SELECT sum(count) AS count FROM countFirst GROUP BY DATE_FORMAT(date, '%Y-%m');";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -114,13 +111,67 @@ app.post('/monthData', async (req, res) => {
 })
 
 // 지역데이터
-app.post('/LocationData', async (req, res) => {
-    const query = "";
+app.post('/DistrictData', async (req, res) => {
+    const { CityValue } = req.body;
+    const query = `select District From location where City = "${CityValue}" group by District;`;
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
-                const graphData = graph.handleResult(result); // 데이터 처리
-                resolve(graphData);
+                const LocationData = graph.handleResult(result); // 데이터 처리
+                resolve(LocationData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(500).send("서버 오류");
+    }
+})
+app.post('/RouteNameData', async (req, res) => {
+    const { CityValue, DistrictValue } = req.body;
+    const query = `select routeName From location where City = "${CityValue}" and District = "${DistrictValue}" group by routeName`;
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LocationData = graph.handleResult(result); // 데이터 처리
+                resolve(LocationData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(500).send("서버 오류");
+    }
+})
+app.post('/AddressData', async (req, res) => {
+    const { CityValue, DistrictValue, RouteNameValue } = req.body;
+    const query = `select Address From location where City = "${CityValue}" and District = "${DistrictValue}" and routeName = "${RouteNameValue}" group by Address;`;
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LocationData = graph.handleResult(result); // 데이터 처리
+                resolve(LocationData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(500).send("서버 오류");
+    }
+})
+app.post('/SignalControlNumberData', async (req, res) => {
+    const { CityValue, DistrictValue, RouteNameValue, AddressValue } = req.body;
+    const query = `select SignalControlNumber From location where City = "${CityValue}" and District = "${DistrictValue}" and routeName = "${RouteNameValue}" and Address = "${AddressValue}";
+    `;
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LocationData = graph.handleResult(result); // 데이터 처리
+                resolve(LocationData);
             });
         });
         console.log("데이터 확인: ", data);

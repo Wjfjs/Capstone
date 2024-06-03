@@ -22,25 +22,23 @@
 
         <div id="Location_select">
             <form id="select-form"> <!-- 영상 위치 선택 -->
-                <select id="Location1" onchange="updateLocation2Select()">
+                <select id="City" onchange="updateDistrictSelect()">
+                    <option value="NaN">도</option>
+                    <option value="전라남도">전라남도</option>
+                </select>
+                <select id="District" onchange="updateRouteNameSelect()">
                     <option value="NaN">시/군</option>
-                    <option value="1">옵션 1</option>
-                    <option value="2">옵션 2</option>
-                    <option value="3">옵션 3</option>
-                </select>
-                <select id="Location2" onchange="updateLocation3Select()">
-                    <option value="NaN">구</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <select id="Location3" onchange="updateLocation4Select()">
-                    <option value="NaN">동/면</option>
+                <select id="RouteName" onchange="updateAddressSelect()">
+                    <option value="NaN">로</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <select id="Location4">
-                    <option value="NaN">교차로</option>
+                <select id="Address" onchange="updateSignalControlNumberSelect()">
+                    <option value="NaN ">주소</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <select id="Location5">
+                <select id="SignalControlNumber">
                     <option value="NaN">카메라번호</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
