@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="CSS/font.css">
         <link rel="stylesheet" href="CSS/CCTVStyle.css">
         <script src="JavaScript/Location.js"></script>
+        <script src="JavaScript/Video.js"></script>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -40,7 +41,7 @@
                     <option value="NaN">카메라번호</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <button type="button">확인</button>
+                <button type="button" onclick="ConnectVideo()">확인</button>
             </form>
         </div>
         <div id="container">
@@ -48,23 +49,6 @@
                 <div id="video">
                     <img id="video_feed" src="" alt="신호 없음" />
                     <p id="errorText"></p>
-                        <script>
-                            var socket = new WebSocket("ws://localhost:8555");
-                            
-                            socket.onmessage = function(event) {
-                                var img = document.getElementById('video_feed');
-                                img.src = 'data:image/jpg;base64,' + event.data;
-                            };
-
-                            socket.onerror = function(event) {
-                                var img = document.getElementById('video_feed');
-                                img.src = 'Image/error.png';
-                                img.style.width = '300px';
-                                img.style.height = 'auto';
-                                var errorText = document.getElementById('errorText');
-                                errorText.textContent = '연결 실패';
-                            };
-                        </script>
                 </div>
             </div>
             <div id="right">
