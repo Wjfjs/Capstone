@@ -41,19 +41,20 @@ app.listen(port, hostname, function(){
 app.post('/hourData', async (req, res) => {
     const { id } = req.body;
     const query = "\
-    SELECT\
-        COALESCE(SUM(count), 0) AS total_count\
-    FROM\
-        (SELECT 1 AS hour UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION\
-        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION\
-        SELECT 13 UNION SELECT 14 UNION SELECT 15 UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION\
-        SELECT 19 UNION SELECT 20 UNION SELECT 21 UNION SELECT 22 UNION SELECT 23 UNION SELECT 24) AS all_hours\
-    Left JOIN\
-        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
-    ON\
-        HOUR(countFirst.date) = all_hours.hour\
-    GROUP BY\
-        all_hours.hour;";
+    select COALESCE(count, 0) AS total_count\
+    from all_hours\
+    left Join (\
+        select date, avg(count) count, SignalControlNumber\
+        from (\
+            select DATE_FORMAT(date, '%H') date, SUM(count) count, SignalControlNumber\
+            from countFirst\
+            where SignalControlNumber = 16\
+            GROUP BY DATE_FORMAT(date, '%Y-%m-%d %H')\
+        ) as countFirst\
+        group by date\
+    ) as countFirst\
+    ON countFirst.date = all_hours.hour\
+    order by hour;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -73,20 +74,20 @@ app.post('/hourData', async (req, res) => {
 app.post('/dayData', async (req, res) => {
     const { id } = req.body;
     const query = "\
-        SELECT\
-        COALESCE(SUM(count), 0) AS total_count\
-    FROM\
-        (SELECT 1 AS day UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION\
-        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION\
-        SELECT 13 UNION SELECT 14 UNION SELECT 15 UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION\
-        SELECT 19 UNION SELECT 20 UNION SELECT 21 UNION SELECT 22 UNION SELECT 23 UNION SELECT 24 UNION\
-        SELECT 25 UNION SELECT 26 UNION SELECT 27 UNION SELECT 28 UNION SELECT 29 UNION SELECT 30 UNION SELECT 31) AS all_days\
-    Left JOIN\
-        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
-    ON\
-        DAY(countFirst.date) = all_days.day\
-    GROUP BY\
-        all_days.day;";
+    select COALESCE(count, 0) AS total_count\
+    from all_days\
+    left Join (\
+        select date, avg(count) count, SignalControlNumber\
+        from (\
+            select DATE_FORMAT(date, '%d') date, SUM(count) count, SignalControlNumber\
+            from countFirst\
+            where SignalControlNumber = 16\
+            GROUP BY DATE_FORMAT(date, '%Y-%m-%d')\
+        ) as countFirst\
+        group by date\
+    ) as countFirst\
+    ON countFirst.date = all_days.day\
+    order by day;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -106,16 +107,20 @@ app.post('/dayData', async (req, res) => {
 app.post('/weekData', async (req, res) => {
     const { id } = req.body;
     const query = "\
-    SELECT\
-        COALESCE(SUM(count), 0) AS total_count\
-    FROM\
-        (SELECT 1 AS week UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7) AS all_weeks\
-    Left JOIN\
-        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
-    ON\
-        DAY(countFirst.date) = all_weeks.week\
-    GROUP BY\
-        all_weeks.week;";
+    select COALESCE(count, 0) AS total_count\
+    from all_weeks\
+    left Join (\
+        select dayofweek(date) date, avg(count) count, SignalControlNumber\
+        from (\
+            select DATE_FORMAT(date, '%Y-%m-%d') date, SUM(count) count, SignalControlNumber\
+            from countFirst\
+            where SignalControlNumber = 16\
+            GROUP BY DATE_FORMAT(date, '%Y-%m-%d')\
+        ) as countFirst\
+        group by dayofweek(date)\
+    ) as countFirst\
+    ON countFirst.date = all_weeks.week\
+    order by week;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -135,17 +140,20 @@ app.post('/weekData', async (req, res) => {
 app.post('/monthData', async (req, res) => {
     const { id } = req.body;
     const query = "\
-    SELECT \
-        COALESCE(SUM(count), 0) AS total_count\
-    FROM \
-        (SELECT 1 AS month UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION \
-        SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12) AS all_months\
-    Left JOIN\
-        (select * from countFirst where SignalControlNumber = "+id+") as countFirst\
-    ON\
-        MONTH(countFirst.date) = all_months.month\
-    GROUP BY\
-        all_months.month;";
+    select COALESCE(count, 0) AS total_count\
+    from all_months\
+    left Join (\
+        select date, avg(count) count, SignalControlNumber\
+        from (\
+            select DATE_FORMAT(date, '%m') date, SUM(count) count, SignalControlNumber\
+            from countFirst\
+            where SignalControlNumber = 16\
+            GROUP BY DATE_FORMAT(date, '%Y-%m')\
+        ) as countFirst\
+        group by date\
+    ) as countFirst\
+    ON countFirst.date = all_months.month\
+    order by month;";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
