@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+#right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .traffic-light1 {
     width: 100px;
     height: 300px;
