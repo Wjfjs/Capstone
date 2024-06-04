@@ -48,7 +48,7 @@ app.post('/hourData', async (req, res) => {
         from (\
             select DATE_FORMAT(date, '%H') date, SUM(count) count, SignalControlNumber\
             from countFirst\
-            where SignalControlNumber = 16\
+            where SignalControlNumber = "+ id +"\
             GROUP BY DATE_FORMAT(date, '%Y-%m-%d %H')\
         ) as countFirst\
         group by date\
@@ -81,7 +81,7 @@ app.post('/dayData', async (req, res) => {
         from (\
             select DATE_FORMAT(date, '%d') date, SUM(count) count, SignalControlNumber\
             from countFirst\
-            where SignalControlNumber = 16\
+            where SignalControlNumber = "+ id +"\
             GROUP BY DATE_FORMAT(date, '%Y-%m-%d')\
         ) as countFirst\
         group by date\
@@ -114,7 +114,7 @@ app.post('/weekData', async (req, res) => {
         from (\
             select DATE_FORMAT(date, '%Y-%m-%d') date, SUM(count) count, SignalControlNumber\
             from countFirst\
-            where SignalControlNumber = 16\
+            where SignalControlNumber = "+ id +"\
             GROUP BY DATE_FORMAT(date, '%Y-%m-%d')\
         ) as countFirst\
         group by dayofweek(date)\
@@ -147,7 +147,7 @@ app.post('/monthData', async (req, res) => {
         from (\
             select DATE_FORMAT(date, '%m') date, SUM(count) count, SignalControlNumber\
             from countFirst\
-            where SignalControlNumber = 16\
+            where SignalControlNumber = "+ id +"\
             GROUP BY DATE_FORMAT(date, '%Y-%m')\
         ) as countFirst\
         group by date\
