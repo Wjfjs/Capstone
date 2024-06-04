@@ -11,9 +11,9 @@ function ConnectVideo(){
 
 function ConnectSocket(value){
     switch (value) {
-        case 15 :
-        case 16 :
-        case 17 :
+        case "15" :
+        case "16" :
+        case "17" :
             socket = new WebSocket("ws://localhost:8555");
             break;
         default :

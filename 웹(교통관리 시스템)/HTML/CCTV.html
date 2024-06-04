@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="CSS/CCTVStyle.css">
         <script src="JavaScript/Location.js"></script>
         <script src="JavaScript/Video.js"></script>
+        <script src="JavaScript/Log.js"></script>
         <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
@@ -41,7 +42,7 @@
                     <option value="NaN">카메라번호</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
-                <button type="button" onclick="ConnectVideo()">확인</button>
+                <button type="button" onclick="ConnectVideo(), GetLog()">확인</button>
             </form>
         </div>
         <div id="container">
@@ -62,7 +63,33 @@
                             </tr>
                         </thead>
                         <tbody id="ControlLogBody">
-                            <!-- 신호 로그 -->
+                            <script>
+                                // 테이블의 tbody 요소 가져오기
+                                var tbody = document.getElementById("ControlLogBody");
+                                // 학생 데이터 배열을 순회하면서 테이블에 데이터 추가
+
+                                for (var i = 0; i < 12; i++ ){
+                                    var row = document.createElement("tr"); // 새로운 행 생성
+
+                                    // 각 데이터에 대한 열 생성
+                                    var numCell = document.createElement("td");
+                                    numCell.style.height = "41px";
+                                    numCell.textContent = null;
+                                    numCell.classList.add("LogNum");
+                                    row.appendChild(numCell);
+
+                                    var timeCell = document.createElement("td");
+                                    timeCell.textContent = null;
+                                    row.appendChild(timeCell);
+
+                                    var colorCell = document.createElement("td");
+                                    colorCell.textContent = null;
+                                    row.appendChild(colorCell);
+
+                                    // 새로운 행을 tbody에 추가
+                                    tbody.appendChild(row);
+                                }
+                            </script>
                         </tbody>
                     </table>
                 </div>

@@ -242,8 +242,46 @@ app.post('/SignalControlNumberData', async (req, res) => {
 })
 
 // 로그데이터
-app.post('/LogData', async (req, res) => {
-    const query = "";
+// TrafficID
+app.post('/LogDataID', async (req, res) => {
+    const { id } = req.body;
+    const query = "select TraffID from TrafficLight where SignalControlNumber = "+id+";";
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LogData = getLog.ResultLog(result); // 데이터 처리
+                resolve(LogData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(500).send("서버 오류");
+    }
+})
+// ColorTime
+app.post('/LogDataColorTime', async (req, res) => {
+    const { id } = req.body;
+    const query = "select ColorTime from TrafficLight where SignalControlNumber = "+id+";";
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LogData = getLog.ResultLog(result); // 데이터 처리
+                resolve(LogData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(500).send("서버 오류");
+    }
+})
+// Sequence (색상)
+app.post('/LogDataSequence', async (req, res) => {
+    const { id } = req.body;
+    const query = "select Sequence from TrafficLight where SignalControlNumber = "+id+";";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {

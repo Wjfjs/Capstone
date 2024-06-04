@@ -1,60 +1,105 @@
-async function GetGraphDataHour() {
+async function GetLog() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    var id = fifthSelect.value; // 카메라번호
+    var num = null;
+    var time = null;
+    var color = null;
+
+
+
     try {
-        const response = await fetch('/LogData', {
+        const response = await fetch('/LogDataID', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify({ id })
         });
         console.log(response);
         if (!response.ok) {
             throw new Error('서버 응답 실패');
         }
 
-        const result = await response.json();
-        GraphHour(result);
+        num = await response.json(); // 기본키 
     } catch (error) {
         console.error('fetch 오류:', error);
     }
+
+    try {
+        const response = await fetch('/LogDataColorTime', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
+
+        time = await response.json(); // 시간
+    } catch (error) {
+        console.error('fetch 오류:', error);
+    }
+
+    try {
+        const response = await fetch('/LogDataSequence', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id })
+        });
+        console.log(response);
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
+
+        color = await response.json();  // 색상
+    } catch (error) {
+        console.error('fetch 오류:', error);
+    }
+
+    drawLogTable(num, time, color);
 }
-GetGraphDataHour();
 
-var Logs = [
-    { num: 1, time: "05-21 18:00:00", color: "적" },
-    { num: 2, time: "05-21 18:02:00", color: "녹" },
-    { num: 3, time: "05-21 18:04:00", color: "적(점멸)" },
-    { num: 4, time: "05-21 18:06:00", color: "녹" },
-    { num: 5, time: "05-21 18:08:00", color: "적" },
-    { num: 6, time: "05-21 18:10:00", color: "녹" },
-    { num: 7, time: "05-21 18:12:00", color: "적" },
-    { num: 8, time: "05-21 18:14:00", color: "녹" },
-    { num: 9, time: "05-21 18:16:00", color: "적" },
-    { num: 10, time: "05-21 18:18:00", color: "녹" },
-    { num: 11, time: "05-21 18:20:00", color: "적" },
-    { num: 12, time: "05-21 18:22:00", color: "녹" },
-];
+function drawLogTable(num, time, color){
+    document.getElementById("ControlLogBody").innerHTML = "";
+    var Logs = [];
+    var i = num.length-12;
+    if(i<=0)
+        i = 0;
 
-// 테이블의 tbody 요소 가져오기
-var tbody = document.getElementById("ControlLogBody");
+    for (; i < num.length || i < 12; i++ ){
+        Logs.push({num:num[i], time:time[i], color:color[i]});
+    }
+    console.log(Logs);
 
-// 학생 데이터 배열을 순회하면서 테이블에 데이터 추가
-Logs.forEach(function(Logs) {
-    var row = document.createElement("tr"); // 새로운 행 생성
+    // 테이블의 tbody 요소 가져오기
+    var tbody = document.getElementById("ControlLogBody");
+    // 학생 데이터 배열을 순회하면서 테이블에 데이터 추가
+    Logs.forEach(function(Logs) {
+        var row = document.createElement("tr"); // 새로운 행 생성
 
-    // 각 데이터에 대한 열 생성
-    var numCell = document.createElement("td");
-    numCell.textContent = Logs.num;
-    numCell.classList.add("LogNum");
-    row.appendChild(numCell);
+        // 각 데이터에 대한 열 생성
+        var numCell = document.createElement("td");
+        numCell.style.height = "41px";
+        numCell.textContent = Logs.num;
+        numCell.classList.add("LogNum");
+        row.appendChild(numCell);
 
-    var timeCell = document.createElement("td");
-    timeCell.textContent = Logs.time;
-    row.appendChild(timeCell);
+        var timeCell = document.createElement("td");
+        timeCell.textContent = Logs.time;
+        row.appendChild(timeCell);
 
-    var colorCell = document.createElement("td");
-    colorCell.textContent = Logs.color;
-    row.appendChild(colorCell);
+        var colorCell = document.createElement("td");
+        colorCell.textContent = Logs.color;
+        row.appendChild(colorCell);
 
-    // 새로운 행을 tbody에 추가
-    tbody.appendChild(row);
-});
+        // 새로운 행을 tbody에 추가
+        tbody.appendChild(row);
+    });
+}
+
+
