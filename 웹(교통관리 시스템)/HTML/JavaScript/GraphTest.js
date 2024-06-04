@@ -1,3 +1,15 @@
+function drawGraph() {
+    var fifthSelect = document.getElementById("SignalControlNumber");
+    if (isNaN(fifthSelect.value)){
+        console.log("오류");
+    }else{
+        GetGraphDataHour();
+        GetGraphDataDay();
+        GetGraphDataWeek();
+        GetGraphDataMonth();
+    }
+}
+
 async function GetGraphDataHour() {
     var fifthSelect = document.getElementById("SignalControlNumber");
     var id = fifthSelect.value; // 카메라번호
