@@ -128,7 +128,7 @@ async def send_video(websocket, path):
 
         if cv2.waitKey(1) == ord('q'): # 캠또는 비디오 종료 1 또는 q
             break
-
+    
     saveCount.close()
     db.saveCountData(count_datetime)
     cap.release()

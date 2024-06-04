@@ -5,6 +5,7 @@ import asyncio
 import websockets
 import db #db.py 불러옴
 import numpy as np
+import pymysql
 from datetime import datetime
 from shapely.geometry import Polygon
 from shapely.geometry.point import Point
@@ -62,6 +63,20 @@ def mouse_callback(event, x, y, flags, param):
         if current_region is not None and current_region["dragging"]:
             current_region["dragging"] = False
 
+def insert_data(date, count):
+    conn = pymysql.connect(host='192.168.1.3', user='dbuser192381', password='ce1234', db='db192381', charset='utf8')
+    cur = conn.cursor()
+    
+    query = "INSERT INTO countFirst (date, count, SignalControlNumber) VALUES (%s, %s, %s)"
+    values = (date, count, 15)
+    
+    cur.execute(query, values)
+    
+    conn.commit()
+    conn.close()
+
+    print(f"총 : {count} 개의 데이터 삽입이 완료되었습니다.")
+
 #model = YOLO('C:/Users/315/runs/detect/train34/weights/best.pt') # 모델
 model = YOLO('run/best4.pt') # 모델
 names = model.model.names
@@ -72,6 +87,8 @@ async def send_video(websocket, path):
     totalDetObj = 0
 
     vid_frame_count = 0
+
+    count_datetime = 0
 
     cap = cv2.VideoCapture(0)
     #cap = cv2.VideoCapture('video/test.mp4')
@@ -85,19 +102,17 @@ async def send_video(websocket, path):
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = 30    #캠은 15 동영상은 30
-
-    if (cap == cv2.VideoCapture(0)):
-        fps = 15
     
-    out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (frame_width, frame_height))
+    out = cv2.VideoWriter(output_video_path, cv2.VideoWriter_fourcc(*'mp4v'), 8, (frame_width, frame_height))
     
     #차량 총 대수 저장 함수
     def show():
         countTime = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
         saveCount.write((countTime) + " 총 : " + str(totalDetObj) + "대 \n")
+        insert_data(countTime, totalDetObj)
 
     schedule.every(1).seconds.do(show)
-    
+
     while cap.isOpened():
         start = datetime.now()
 
@@ -231,12 +246,13 @@ async def send_video(websocket, path):
             region["counts"] = 0
             totalDetObj = 0
 
+        out.write(frame)
+
         if cv2.waitKey(1) == ord('q'): # 캠또는 비디오 종료 1 또는 q
             break
-        
+
     del vid_frame_count
     saveCount.close()
-    db.saveCountData(count_datetime)
     cap.release()
     cv2.destroyAllWindows()
 
