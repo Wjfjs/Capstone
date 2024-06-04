@@ -62,8 +62,8 @@ def mouse_callback(event, x, y, flags, param):
         if current_region is not None and current_region["dragging"]:
             current_region["dragging"] = False
 
-#model = YOLO('C:/Users/315/runs/detect/train14/weights/best.pt') # 모델
-model = YOLO('run/best1.pt') # 모델
+#model = YOLO('C:/Users/315/runs/detect/train34/weights/best.pt') # 모델
+model = YOLO('run/best4.pt') # 모델
 names = model.model.names
 
 tracker = DeepSort(max_age=50)
@@ -73,8 +73,8 @@ async def send_video(websocket, path):
 
     vid_frame_count = 0
 
-    #cap = cv2.VideoCapture(0)
-    cap = cv2.VideoCapture('video/test.mp4')
+    cap = cv2.VideoCapture(0)
+    #cap = cv2.VideoCapture('video/test.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
