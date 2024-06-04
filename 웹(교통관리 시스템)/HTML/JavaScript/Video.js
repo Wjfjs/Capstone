@@ -5,6 +5,7 @@ function ConnectVideo(){
     if (isNaN(fifthSelect.value)){
         console.log("오류");
     }else{
+        console.log(fifthSelect.value);
         ConnectSocket(fifthSelect.value);
     }
 }
