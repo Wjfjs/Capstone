@@ -6,6 +6,7 @@ import websockets
 import db #db.py 불러옴
 import numpy as np
 import pymysql
+import time
 from datetime import datetime
 from shapely.geometry import Polygon
 from shapely.geometry.point import Point
@@ -68,7 +69,7 @@ def insert_data(date, count):
     cur = conn.cursor()
     
     query = "INSERT INTO countFirst (date, count, SignalControlNumber) VALUES (%s, %s, %s)"
-    values = (date, count, 15)
+    values = (date, count, 16)
     
     cur.execute(query, values)
     
@@ -90,8 +91,8 @@ async def send_video(websocket, path):
 
     count_datetime = 0
 
-    cap = cv2.VideoCapture(0)
-    #cap = cv2.VideoCapture('video/test.mp4')
+    #cap = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture('video/test.mp4')
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
 
@@ -108,6 +109,7 @@ async def send_video(websocket, path):
     #차량 총 대수 저장 함수
     def show():
         countTime = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        time.sleep(2)
         saveCount.write((countTime) + " 총 : " + str(totalDetObj) + "대 \n")
         insert_data(countTime, totalDetObj)
 
