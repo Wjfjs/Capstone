@@ -109,11 +109,10 @@ async def send_video(websocket, path):
     #차량 총 대수 저장 함수
     def show():
         countTime = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-        time.sleep(2)
         saveCount.write((countTime) + " 총 : " + str(totalDetObj) + "대 \n")
         insert_data(countTime, totalDetObj)
 
-    schedule.every(1).seconds.do(show)
+    schedule.every(10).seconds.do(show)
 
     while cap.isOpened():
         start = datetime.now()
