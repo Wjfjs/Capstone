@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light</title>
+    <link rel="stylesheet" href="CSS/TrafficLight.css">
+    <link rel="stylesheet" href="CSS/font.css">
+    <link rel="stylesheet" href="CSS/AllStyle.css">
+</head>
+<body onload="init()">
+    <center>
+        <div id="Logo-Container">
+            <div id="Logo" onclick="window.location.href = 'Main.html'">MINERVA 교통 관리 시스템</div>
+            <div id="hvr-icon-forward">
+                메인화면으로 돌아가기
+                <img id="hvr-icon" src="Image/icon_right_arrow.png" class="hvr-icon" />
+            </div>
+        </div>
+        <script src="JavaScript/Logo.js"></script>
+    </center>
+    <div id="left">
+        <div class="traffic-light1">
+            <div id="green" class="light"></div>
+            <div id="yellow" class="light"></div>
+            <div id="red" class="light"></div>
+        </div>
+        
+        <div class="traffic-light2">
+            <div id="green2" class="light"></div>
+            <div id="yellow2" class="light"></div>
+            <div id="red2" class="light"></div>
+        </div>
+    </div>
+    <div id="right">
+        <div id="result1"> Loading </div>&nbsp
+        <div id="result2"> Loading </div>&nbsp
+        <div id="result3"> Loading </div>&nbsp/&nbsp
+
+        <div id="result24"> Loading </div>&nbsp
+        <div id="result25"> Loading </div>&nbsp
+        <div id="result26"> Loading </div>&nbsp
+
+        <div style="margin-top: 20px">
+            <button onclick="button1Click()">초록</button>
+            <button onclick="button2Click()">노랑</button>
+            <button onclick="button3Click()">빨강</button>
+        </div>
+    </div>
+    <script src="JavaScript/TimeAlgorithm.js"></script>
+</body>
+</html>
