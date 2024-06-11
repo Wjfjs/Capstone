@@ -286,15 +286,24 @@ const lightElements1 = {
 function changeLight1() {
     
     if(isChangingLight1 == true){
-    lightElements1.red.classList.remove("red");
-    lightElements1.yellow.classList.remove("yellow");
-    lightElements1.green.classList.remove("green");
+        lightElements1.red.classList.remove("red");
+        lightElements1.yellow.classList.remove("yellow");
+        lightElements1.green.classList.remove("green");
 
-    const light = lights[currentLight1];
-    lightElements1[light].classList.add(light);
+        const light = lights[currentLight1];
+        lightElements1[light].classList.add(light);
 
-    currentLight1 = (currentLight1 + 1) % lights.length;
-    timerId = setTimeout(changeLight1, durations[currentLight1]*100);
+        currentLight1 = (currentLight1 + 1) % lights.length;
+        timerId = setTimeout(changeLight1, durations[currentLight1]*100);
+
+        var data = durations[currentLight1]*100;
+        fetch('/sendPython', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data })
+        })
     }
 }
 // 2번째 신호등 불 켜지는 알고리즘
@@ -389,6 +398,29 @@ function toggleColor(color) {
 
     if (redClicked && yellowClicked && !greenClicked){
         isChangingLight1 = true;
+    }
+}
+
+function changeTraffic() { // 선택한 버튼에 따른 신호제어
+    var ControlTrafficForm = document.getElementById("ControlTrafficForm");
+    console.log("로그를 보면 " + ControlTrafficForm.value);
+    switch (ControlTrafficForm.value) {
+        case "red":
+            button3Click();
+            break;
+        case "green":
+            button1Click();
+            break;
+        case "fleshingRed":
+
+        case "flashingYellow()":
+
+        case "Green":
+
+        case "off":
+
+        default :
+            console.log("없다 병신아");
     }
 }
 

@@ -95,14 +95,17 @@
                     </table>
                 </div>
                 <!-- <script src="JavaScript/Log.js"></script>  -->
-                <div id="Control">
-                    <div id="TrafficLight">
-                        <button id="RedLight" class="TrafficControl"></button>
-                        <button id="YellowLight" class="TrafficControl"></button>
-                        <button id="GreenLight" class="TrafficControl"></button>
-                        <button id="ConfirmLight" class="TrafficControl"></button>
+                <form id="ControlTrafficForm">
+                    <div id="Control">
+                        <div id="TrafficLight">
+                            <div id="RedLight" class="TrafficControl"></div>
+                            <div id="YellowLight" class="TrafficControl"></div>
+                            <div id="GreenLight" class="TrafficControl"></div>
+                            <div id="ConfirmLight" class="TrafficControl" onclick="changeTraffic()"></div>
+                            <input type="hidden" id="controlValue" value="0">
+                        </div>
                     </div>
-                </div>
+                </form>
                 <script src="JavaScript/TrafficControl.js"></script> 
             </div>
         </div>

@@ -1,6 +1,7 @@
 var Redbutton = document.getElementById("RedLight");
 var Yellowbutton = document.getElementById("YellowLight");
 var Greenbutton = document.getElementById("GreenLight");
+var ControlTrafficForm = document.getElementById("ControlTrafficForm");
 
 function reset(){
     Redbutton.style.backgroundColor = "grey";
@@ -13,6 +14,7 @@ function reset(){
     clearInterval(RedInterval);
     clearInterval(YellowInterval);
     clearInterval(GreenInterval);
+    ControlTrafficForm.value = "0";
 }
 
 /* 적색 신호등 */
@@ -27,6 +29,7 @@ Redbutton.addEventListener("click", function() {
         timeout = setTimeout(function() {
             if (isRed == 0) {
                 reset()
+                ControlTrafficForm.value = "red";
                 Redbutton.style.backgroundColor = "red";
                 isRed = 1;
             } else {
@@ -39,6 +42,7 @@ Redbutton.addEventListener("click", function() {
     } else {
         // 클릭 이벤트가 연달아 발생한 경우
         reset()
+        ControlTrafficForm.value = "fleshingRed";
         RedInterval = setInterval("flashRed()", 500) 
         clearTimeout(timeout);
         clickCount = 0;
@@ -65,6 +69,7 @@ Yellowbutton.addEventListener("click", function() {
         timeout = setTimeout(function() {
             if (isYellow == 0) {
                 reset()
+                ControlTrafficForm.value = "leftGreen";
                 Yellowbutton.textContent="←";
                 Yellowbutton.style.fontWeight="bolder";
                 Yellowbutton.style.fontSize="70px";
@@ -81,6 +86,7 @@ Yellowbutton.addEventListener("click", function() {
     } else {
         // 클릭 이벤트가 연달아 발생한 경우
         reset()
+        ControlTrafficForm.value = "flashingYellow";
         YellowInterval = setInterval("flashYellow()", 500) 
         clearTimeout(timeout);
         clickCount = 0;
@@ -107,6 +113,7 @@ Greenbutton.addEventListener("click", function() {
         timeout = setTimeout(function() {
             if (isGreen == 0) {
                 reset()
+                ControlTrafficForm.value = "green";
                 Greenbutton.style.backgroundColor = "#00e000";
                 isGreen = 1;
             } else {
@@ -119,6 +126,7 @@ Greenbutton.addEventListener("click", function() {
     } else {
         // 클릭 이벤트가 연달아 발생한 경우
         reset()
+        ControlTrafficForm.value = "Off";
         Redbutton.style.backgroundColor = "111111";
         Yellowbutton.style.backgroundColor = "111111";
         Greenbutton.style.backgroundColor = "111111";
