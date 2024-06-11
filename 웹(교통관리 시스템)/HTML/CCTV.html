@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="CSS/AllStyle.css">
         <link rel="stylesheet" href="CSS/font.css">
         <link rel="stylesheet" href="CSS/CCTVStyle.css">
+        <link rel="stylesheet" href="CSS/TrafficLight.css">
         <script src="JavaScript/Location.js"></script>
         <script src="JavaScript/Video.js"></script>
         <script src="JavaScript/Log.js"></script>
@@ -104,6 +105,37 @@
                 </div>
                 <script src="JavaScript/TrafficControl.js"></script> 
             </div>
+        </div>
+        <div>
+            <div id="trafficLeft">
+                <div class="traffic-light1">
+                    <div id="green" class="light"></div>
+                    <div id="yellow" class="light"></div>
+                    <div id="red" class="light"></div>
+                </div>
+                
+                <div class="traffic-light2">
+                    <div id="green2" class="light"></div>
+                    <div id="yellow2" class="light"></div>
+                    <div id="red2" class="light"></div>
+                </div>
+            </div>
+            <div id="trafficRight">
+                <div id="result1"> Loading </div>&nbsp
+                <div id="result2"> Loading </div>&nbsp
+                <div id="result3"> Loading </div>&nbsp/&nbsp
+        
+                <div id="result24"> Loading </div>&nbsp
+                <div id="result25"> Loading </div>&nbsp
+                <div id="result26"> Loading </div>&nbsp
+        
+                <div style="margin-top: 20px">
+                    <button onclick="button1Click()">초록</button>
+                    <button onclick="button2Click()">노랑</button>
+                    <button onclick="button3Click()">빨강</button>
+                </div>
+            </div>
+            <script src="JavaScript/TimeAlgorithm.js"></script>
         </div>
     </body>
 </html>

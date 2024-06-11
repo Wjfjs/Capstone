@@ -1,26 +1,27 @@
-#left {
+#trafficLeft {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#right {
+#trafficRight {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .traffic-light1 {
-    width: 100px;
-    height: 300px;
+    width: 300px;
+    height: 100px;
     background-color: black;
     border-radius: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     padding: 10px;
     margin-right: 30px;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 .traffic-light2 {
