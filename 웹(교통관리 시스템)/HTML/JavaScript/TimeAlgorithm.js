@@ -37,27 +37,7 @@ async function GetTimeData() {
 
         console.log('처리된 데이터:', result);
 
-        function displayResult(resultIndex, resultValue) {
-            const resultContainer = document.getElementById(`result${resultIndex}`);
-            resultContainer.textContent = resultValue['ColorTime'];
-            resultContainer.innerHTML += "  ";
-        }
         
-        // 결과 출력을 위한 딜레이 설정 (밀리초 단위)
-        const delayBetweenResults = 1;
-        
-        // 각 결과를 일정 시간 간격으로 출력
-        setTimeout(() => {
-            displayResult(1, result[0]);
-        }, delayBetweenResults * 0);
-          
-        setTimeout(() => {
-            displayResult(2, result[1]);
-        }, delayBetweenResults * 1);
-        
-        setTimeout(() => {
-            displayResult(3, result[2]);
-        }, delayBetweenResults * 2);
 
          await result.forEach(function(element) {
              durations.push(element.ColorTime);

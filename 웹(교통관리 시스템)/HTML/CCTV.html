@@ -41,6 +41,8 @@
                 </select>
                 <select id="SignalControlNumber">
                     <option value="NaN">카메라번호</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
                     <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
                 </select>
                 <button type="button" onclick="ConnectVideo(), GetLog()">확인</button>
@@ -116,28 +118,8 @@
                     <div id="yellow" class="light"></div>
                     <div id="red" class="light"></div>
                 </div>
-                
-                <div class="traffic-light2">
-                    <div id="green2" class="light"></div>
-                    <div id="yellow2" class="light"></div>
-                    <div id="red2" class="light"></div>
-                </div>
             </div>
-            <div id="trafficRight">
-                <div id="result1"> Loading </div>&nbsp
-                <div id="result2"> Loading </div>&nbsp
-                <div id="result3"> Loading </div>&nbsp/&nbsp
-        
-                <div id="result24"> Loading </div>&nbsp
-                <div id="result25"> Loading </div>&nbsp
-                <div id="result26"> Loading </div>&nbsp
-        
-                <div style="margin-top: 20px">
-                    <button onclick="button1Click()">초록</button>
-                    <button onclick="button2Click()">노랑</button>
-                    <button onclick="button3Click()">빨강</button>
-                </div>
-            </div>
+
             <script src="JavaScript/TimeAlgorithm.js"></script>
         </div>
     </body>
