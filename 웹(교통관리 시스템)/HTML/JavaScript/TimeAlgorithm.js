@@ -352,23 +352,7 @@ function trafficReset(){
     flashingRed = false;
     flashingYellow = false;
     Off = false;
-    clearInterval(RedInterval);
-    clearInterval(YellowInterval);
 }
-
-function trafficFlashRed(){ 
-    if (lightElements1.red.style.backgroundColor.indexOf("rgb(255, 0, 0)")!=-1) 
-        lightElements1.red.style.backgroundColor="grey" 
-    else 
-    lightElements1.red.style.backgroundColor="#ff0000" 
-} 
-
-function trafficFlashYellow(){ 
-    if (lightElements1.yellow.style.backgroundColor.indexOf("rgb(255, 131, 0)")!=-1) 
-        lightElements1.yellow.style.backgroundColor="grey" 
-    else 
-    lightElements1.yellow.style.backgroundColor="#ff8300"
-} 
 
 function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -378,6 +362,7 @@ async function toggleColor(color) {
     switch(color) {
         case 'green':
             if (greenClicked) {
+                trafficReset();
                 lightElements1.green.classList.remove("green");
                 greenClicked = false;
                 console.log('그린색 시작 안돼:', greenClicked);
@@ -393,6 +378,7 @@ async function toggleColor(color) {
             break;
         case 'red':
             if (redClicked) {
+                trafficReset();
                 lightElements1.red.classList.remove("red");
                 redClicked = false;
                 console.log('빨간색 시작 안돼:', redClicked);
@@ -408,6 +394,7 @@ async function toggleColor(color) {
             break;
         case 'leftGreen':
             if (leftGreen) {
+                trafficReset();
                 lightElements1.leftGreen.textContent="";
                 lightElements1.leftGreen.classList.remove("leftGreen");
                 yellow = false;
@@ -431,6 +418,7 @@ async function toggleColor(color) {
             break;
         case 'flashingRed':
             if (flashingRed) {
+                trafficReset();
                 lightElements1.flashingRed.classList.remove("flashingRed");
                 flashingRed = false;
                 console.log('빨간깜빡이 시작 안돼:', flashingRed);
@@ -451,6 +439,7 @@ async function toggleColor(color) {
             break;
         case 'flashingYellow':
             if (flashingYellow) {
+                trafficReset();
                 lightElements1.flashingYellow.classList.remove("flashingYellow");
                 flashingYellow = false;
                 console.log('노란깜빡이 시작 안돼:', flashingYellow);
@@ -472,6 +461,7 @@ async function toggleColor(color) {
             break;
         case 'Off':
             if (Off) {
+                trafficReset();
                 Off = false;
                 lightElements1.red.style.backgroundColor = "gray";
                 lightElements1.yellow.style.backgroundColor = "gray";
