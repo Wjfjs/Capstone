@@ -41,9 +41,14 @@
 .light {
     width: 80px;
     height: 80px;
+    display: flex;
     background-color: gray;
     border-radius: 50%;
     transition: background-color 0.5s;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dovemayo_gothic';
 }
 
 .red {
@@ -55,5 +60,5 @@
 }
 
 .green {
-    background-color: green;
+    background-color: #00e000;
 }

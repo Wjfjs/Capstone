@@ -9,6 +9,10 @@ var count2 = 0;
 let redClicked = false;
 let yellowClicked = false;
 let greenClicked = false;
+let leftGreen = false;
+let flashingRed = false;
+let flashingYellow = false;
+let Off = false;
 
 var trafficID = [];   
 var trafficID2 = [];  
@@ -257,9 +261,12 @@ async function countAlgorithm(){
 let timerId;
 
 const lightElements1 = {
+    green: document.getElementById("green"),
     red: document.getElementById("red"),
     yellow: document.getElementById("yellow"),
-    green: document.getElementById("green")
+    leftGreen: document.getElementById("yellow"),
+    flashingRed: document.getElementById("red"),
+    flashingYellow: document.getElementById("yellow")
 };
 
 // 1번째 신호등 불 켜지는 알고리즘
@@ -275,15 +282,6 @@ function changeLight1() {
 
         currentLight1 = (currentLight1 + 1) % lights.length;
         timerId = setTimeout(changeLight1, durations[currentLight1]*100);
-
-        var data = durations[currentLight1]*100;
-        fetch('/sendPython', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ data })
-        })
     }
 }
 // 2번째 신호등 불 켜지는 알고리즘
@@ -319,16 +317,64 @@ function button1Click() {
 }
 
 function button2Click() {
-    toggleColor('yellow');
-}
-
-function button3Click() {
     toggleColor('red');
 }
 
-// clearTimeout(timerId);
+function button3Click() {
+    toggleColor('leftGreen');
+}
 
-function toggleColor(color) {
+function button4Click() {
+    toggleColor('flashingRed');
+}
+
+function button5Click() {
+    toggleColor('flashingYellow');
+}
+
+function button6Click() {
+    toggleColor('Off');
+}
+
+// clearTimeout(timerId);
+var RedInterval;
+var YellowInterval;
+
+function trafficReset(){
+    lightElements1.green.classList.remove("green");
+    lightElements1.red.classList.remove("red");
+    lightElements1.yellow.classList.remove("yellow");
+    lightElements1.leftGreen.textContent="";
+    redClicked = false;
+    yellowClicked = false;
+    greenClicked = false;
+    leftGreen = false;
+    flashingRed = false;
+    flashingYellow = false;
+    Off = false;
+    clearInterval(RedInterval);
+    clearInterval(YellowInterval);
+}
+
+function trafficFlashRed(){ 
+    if (lightElements1.red.style.backgroundColor.indexOf("rgb(255, 0, 0)")!=-1) 
+        lightElements1.red.style.backgroundColor="grey" 
+    else 
+    lightElements1.red.style.backgroundColor="#ff0000" 
+} 
+
+function trafficFlashYellow(){ 
+    if (lightElements1.yellow.style.backgroundColor.indexOf("rgb(255, 131, 0)")!=-1) 
+        lightElements1.yellow.style.backgroundColor="grey" 
+    else 
+    lightElements1.yellow.style.backgroundColor="#ff8300"
+} 
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function toggleColor(color) {
     switch(color) {
         case 'green':
             if (greenClicked) {
@@ -337,6 +383,7 @@ function toggleColor(color) {
                 console.log('그린색 시작 안돼:', greenClicked);
                 setTimeout(changeLight1, durations[currentLight1]*10);
             } else {
+                trafficReset();
                 rectlyLight();
                 lightElements1.green.classList.add("green");
                 greenClicked = true;
@@ -344,31 +391,101 @@ function toggleColor(color) {
                 clearTimeout(timerId);
             }
             break;
-        case 'yellow':
-            if (yellowClicked) {
-                lightElements1.yellow.classList.remove("yellow");
-                yellowClicked = false;
-                console.log('노란색 시작 안돼:', yellowClicked);
-                setTimeout(changeLight1, durations[currentLight1]*10);
-            } else {
-                rectlyLight();
-                lightElements1.yellow.classList.add("yellow");
-                yellowClicked = true;
-                console.log('노란색 시작 돼:', yellowClicked);
-                clearTimeout(timerId);
-            }
-            break;
         case 'red':
             if (redClicked) {
                 lightElements1.red.classList.remove("red");
                 redClicked = false;
-                console.log('빨간색 시작 안돼:', greenClicked);
+                console.log('빨간색 시작 안돼:', redClicked);
                 setTimeout(changeLight1, durations[currentLight1]*10);
             } else {
+                trafficReset();
                 rectlyLight();
                 lightElements1.red.classList.add("red");
                 redClicked = true;
                 console.log('빨간색 시작 돼:', redClicked);
+                clearTimeout(timerId);
+            }
+            break;
+        case 'leftGreen':
+            if (leftGreen) {
+                lightElements1.leftGreen.textContent="";
+                lightElements1.leftGreen.classList.remove("leftGreen");
+                yellow = false;
+                leftGreen = false;
+                console.log('직좌 시작 안돼:', leftGreen, yellow);
+                setTimeout(changeLight1, durations[currentLight1]*10);
+            } else {
+                trafficReset();
+                rectlyLight();
+                lightElements1.leftGreen.classList.add("leftGreen");
+                lightElements1.leftGreen.textContent="←";
+                lightElements1.leftGreen.style.fontSize="70px";
+                lightElements1.leftGreen.style.color = "#00e000";
+                lightElements1.leftGreen.style.fontWeight="bolder";
+                lightElements1.green.classList.add("green");
+                yellow = true;
+                leftGreen = true;
+                console.log('직좌 시작 돼:', leftGreen, yellow);
+                clearTimeout(timerId);
+            }
+            break;
+        case 'flashingRed':
+            if (flashingRed) {
+                lightElements1.flashingRed.classList.remove("flashingRed");
+                flashingRed = false;
+                console.log('빨간깜빡이 시작 안돼:', flashingRed);
+                setTimeout(changeLight1, durations[currentLight1]*10);
+            } else {
+                trafficReset();
+                rectlyLight();
+                flashingRed = true;
+                console.log('빨간깜빡이 시작 돼:', flashingRed);
+                clearTimeout(timerId);
+                while (flashingRed) {
+                    lightElements1.red.classList.add("red");
+                    await delay(500);
+                    lightElements1.red.classList.remove("red");
+                    await delay(500);
+                }
+            }
+            break;
+        case 'flashingYellow':
+            if (flashingYellow) {
+                lightElements1.flashingYellow.classList.remove("flashingYellow");
+                flashingYellow = false;
+                console.log('노란깜빡이 시작 안돼:', flashingYellow);
+                setTimeout(changeLight1, durations[currentLight1]*10);
+            } else {
+                trafficReset();
+                rectlyLight();
+                lightElements1.flashingYellow.classList.add("flashingYellow");
+                flashingYellow = true;
+                console.log('노란깜빡이 시작 돼:', flashingYellow);
+                clearTimeout(timerId);
+                while (flashingYellow) {
+                    lightElements1.yellow.classList.add("yellow");
+                    await delay(500);
+                    lightElements1.yellow.classList.remove("yellow");
+                    await delay(500);
+                }
+            }
+            break;
+        case 'Off':
+            if (Off) {
+                Off = false;
+                lightElements1.red.style.backgroundColor = "gray";
+                lightElements1.yellow.style.backgroundColor = "gray";
+                lightElements1.green.style.backgroundColor = "gray";
+                console.log('꺼짐 시작 안돼:', Off);
+                setTimeout(changeLight1, durations[currentLight1]*10);
+            } else {
+                trafficReset();
+                rectlyLight();
+                Off = true;
+                lightElements1.red.style.backgroundColor = "111111";
+                lightElements1.yellow.style.backgroundColor = "111111";
+                lightElements1.green.style.backgroundColor = "111111";
+                console.log('꺼짐 시작 돼:', Off);
                 clearTimeout(timerId);
             }
             break;
@@ -385,21 +502,26 @@ function changeTraffic() { // 선택한 버튼에 따른 신호제어
     var ControlTrafficForm = document.getElementById("ControlTrafficForm");
     console.log("로그를 보면 " + ControlTrafficForm.value);
     switch (ControlTrafficForm.value) {
-        case "red":
-            button3Click();
-            break;
         case "green":
             button1Click();
             break;
-        case "fleshingRed":
-
-        case "flashingYellow()":
-
-        case "Green":
-
-        case "off":
-
+        case "red":
+            button2Click();
+            break;
+        case "leftGreen":
+            button3Click();
+            break;
+        case "flashingRed":
+            button4Click();
+            break;
+        case "flashingYellow":
+            button5Click();
+            break;
+        case "Off":
+            button6Click();
+            break;
         default :
+            trafficReset();
             console.log("없다 병신아");
     }
 }

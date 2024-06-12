@@ -42,7 +42,7 @@ Redbutton.addEventListener("click", function() {
     } else {
         // 클릭 이벤트가 연달아 발생한 경우
         reset()
-        ControlTrafficForm.value = "fleshingRed";
+        ControlTrafficForm.value = "flashingRed";
         RedInterval = setInterval("flashRed()", 500) 
         clearTimeout(timeout);
         clickCount = 0;
