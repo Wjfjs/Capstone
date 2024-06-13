@@ -16,7 +16,7 @@ app.use(express.static('HTML'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // 서버 구동
-app.listen(3006, function(){
+app.listen(3003, function(){
     console.log('서버 구동');
 });
 
@@ -113,10 +113,6 @@ app.post('/updateTime', async (req, res) => {
 	const Cntresult = await database.Query(query, values);
 	const Cntresult2 = await database.Query(query, values2);
     
-    
-    const query2 = 'INSERT INTO log(logdate, settime) VALUES (now(), ?)';
-    const valuesx = [time1];
-    await database.Query(query2, valuesx);
 
 
 	if (Cntresult instanceof Error) {
@@ -160,31 +156,32 @@ app.post('/count2', async (req, res) => {
 
 app.post('/InsertLog', async (req, res) => {
     
-    const query2 = 'INSERT INTO log(logdate, settime) VALUES (now(), ?)';
-    const { inxfirst } = req.body;
-    const values = inxfirst;
-
+    const query2 = `INSERT INTO log(CrTime) VALUES (?)`;
+    const { light } = req.body;
+    const values = light;
+    console.log(light);
     await database.Query(query2, values);
+    res.sendStatus(200);
 })
 
-app.post('/InsertLog2', async (req, res) => {
+// app.post('/InsertLog2', async (req, res) => {
     
-    const query2 = 'INSERT INTO log(logdate, settime) VALUES (now(), ?)';
-    const { inxsecond } = req.body;
-    const values = inxsecond;
+//     const query2 = 'INSERT INTO log(logdate, CrTime) VALUES (now(), ?)';
+//     const { inxsecond } = req.body;
+//     const values = inxsecond;
 
-    await database.Query(query2, values);
-    
-
-})
-
-app.post('/InsertLog3', async (req, res) => {
-    
-    const query2 = 'INSERT INTO log(logdate, settime) VALUES (now(), ?)';
-    const { inxthird } = req.body;
-    const values = inxthird;
-
-    await database.Query(query2, values);
+//     await database.Query(query2, values);
     
 
-})
+// })
+
+// app.post('/InsertLog3', async (req, res) => {
+    
+//     const query2 = 'INSERT INTO log(logdate, CrTime) VALUES (now(), ?)';
+//     const { inxthird } = req.body;
+//     const values = inxthird;
+
+//     await database.Query(query2, values);
+    
+
+// })
