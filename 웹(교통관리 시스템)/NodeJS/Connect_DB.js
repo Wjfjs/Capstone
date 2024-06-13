@@ -44,8 +44,19 @@ function DB_Query(sql, callback) {
     });
 }
 
+function DB_Query2(sql) {
+    connection.query(sql, (err) => {
+        if (err) {
+            console.error('쿼리 실행 중 오류가 발생했습니다.');
+            throw err;
+        }
+        console.log('쿼리가 성공적으로 실행되었습니다.');
+    });
+}
+
 module.exports = {
     Connect: DB_Connect,
     Close: DB_Close,
-    Query: DB_Query
+    Query: DB_Query,
+    Query2: DB_Query2
 };

@@ -243,6 +243,25 @@ app.post('/SignalControlNumberData', async (req, res) => {
 })
 
 // 로그데이터
+// 로그데이터 insert
+app.post('/insertControlLog', async (req, res) => {
+    const { id, color } = req.body; // id는 카메라번호, color는 색상
+    const query = `insert into log(CrTime) values ("${color}")`;
+    try {
+        const data = await new Promise((resolve, reject) => {
+            db.Query(query, result => {
+                const LogData = getLog.ResultLog(result); // 데이터 처리
+                resolve(LogData);
+            });
+        });
+        console.log("데이터 확인: ", data);
+        res.send(data);
+    } catch (error) {
+        console.error("데이터 가져오기 실패: ", error);
+        res.status(200).send("서버 오류");
+    }
+})
+
 // TrafficID
 app.post('/LogDataID', async (req, res) => {
     const { id } = req.body;

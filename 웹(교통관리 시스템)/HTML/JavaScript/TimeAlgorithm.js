@@ -312,28 +312,51 @@ function rectlyLight(){
 }
 
 
-function button1Click() {
+function button1Click(color, id) {
     toggleColor('green');
+    insertControlLog(color, id);
 }
 
-function button2Click() {
+function button2Click(color, id) {
     toggleColor('red');
+    insertControlLog(color, id);
 }
 
-function button3Click() {
+function button3Click(color, id) {
     toggleColor('leftGreen');
+    insertControlLog(color, id);
 }
 
-function button4Click() {
+function button4Click(color, id) {
     toggleColor('flashingRed');
+    insertControlLog(color, id);
 }
 
-function button5Click() {
+function button5Click(color, id) {
     toggleColor('flashingYellow');
+    insertControlLog(color, id);
 }
 
-function button6Click() {
+function button6Click(color, id) {
     toggleColor('Off');
+    insertControlLog(color, id);
+}
+
+async function insertControlLog(color, id) {
+    try {
+        const response = await fetch('/insertControlLog', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id, color })
+        });
+        if (!response.ok) {
+            throw new Error('서버 응답 실패');
+        }
+    } catch (error) {
+        console.error('fetch 오류:', error);
+    }
 }
 
 // clearTimeout(timerId);
@@ -490,25 +513,32 @@ async function toggleColor(color) {
 
 function changeTraffic() { // 선택한 버튼에 따른 신호제어
     var ControlTrafficForm = document.getElementById("ControlTrafficForm");
-    console.log("로그를 보면 " + ControlTrafficForm.value);
+    var color = ControlTrafficForm.value
+    console.log("색상로그 : " + color);
+    var fifthSelect = document.getElementById("SignalControlNumber"); // 카메라번호
+    var id = fifthSelect.value;
+    console.log("카메라로그 : " + id);
+    if (isNaN(id)) {
+        console.log("값이 널이거나 정의되지 않았습니다.");
+    }
     switch (ControlTrafficForm.value) {
         case "green":
-            button1Click();
+            button1Click(color, id);
             break;
         case "red":
-            button2Click();
+            button2Click(color, id);
             break;
         case "leftGreen":
-            button3Click();
+            button3Click(color, id);
             break;
         case "flashingRed":
-            button4Click();
+            button4Click(color, id);
             break;
         case "flashingYellow":
-            button5Click();
+            button5Click(color, id);
             break;
         case "Off":
-            button6Click();
+            button6Click(color, id);
             break;
         default :
             trafficReset();
