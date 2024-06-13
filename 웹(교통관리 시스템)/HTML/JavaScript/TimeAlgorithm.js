@@ -313,33 +313,27 @@ function rectlyLight(){
 
 
 function button1Click(color, id) {
-    toggleColor('green');
-    insertControlLog(color, id);
+    toggleColor('green', id);
 }
 
 function button2Click(color, id) {
-    toggleColor('red');
-    insertControlLog(color, id);
+    toggleColor('red', id);
 }
 
 function button3Click(color, id) {
-    toggleColor('leftGreen');
-    insertControlLog(color, id);
+    toggleColor('leftGreen', id);
 }
 
 function button4Click(color, id) {
-    toggleColor('flashingRed');
-    insertControlLog(color, id);
+    toggleColor('flashingRed', id);
 }
 
 function button5Click(color, id) {
-    toggleColor('flashingYellow');
-    insertControlLog(color, id);
+    toggleColor('flashingYellow', id);
 }
 
 function button6Click(color, id) {
-    toggleColor('Off');
-    insertControlLog(color, id);
+    toggleColor('Off', id);
 }
 
 async function insertControlLog(color, id) {
@@ -381,7 +375,7 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function toggleColor(color) {
+async function toggleColor(color, id) {
     switch(color) {
         case 'green':
             if (greenClicked) {
@@ -396,6 +390,7 @@ async function toggleColor(color) {
                 lightElements1.green.classList.add("green");
                 greenClicked = true;
                 console.log('그린색 시작 돼:', greenClicked);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
             }
             break;
@@ -412,6 +407,7 @@ async function toggleColor(color) {
                 lightElements1.red.classList.add("red");
                 redClicked = true;
                 console.log('빨간색 시작 돼:', redClicked);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
             }
             break;
@@ -436,6 +432,7 @@ async function toggleColor(color) {
                 yellow = true;
                 leftGreen = true;
                 console.log('직좌 시작 돼:', leftGreen, yellow);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
             }
             break;
@@ -451,6 +448,7 @@ async function toggleColor(color) {
                 rectlyLight();
                 flashingRed = true;
                 console.log('빨간깜빡이 시작 돼:', flashingRed);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
                 while (flashingRed) {
                     lightElements1.red.classList.add("red");
@@ -473,6 +471,7 @@ async function toggleColor(color) {
                 lightElements1.flashingYellow.classList.add("flashingYellow");
                 flashingYellow = true;
                 console.log('노란깜빡이 시작 돼:', flashingYellow);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
                 while (flashingYellow) {
                     lightElements1.yellow.classList.add("yellow");
@@ -499,6 +498,7 @@ async function toggleColor(color) {
                 lightElements1.yellow.style.backgroundColor = "111111";
                 lightElements1.green.style.backgroundColor = "111111";
                 console.log('꺼짐 시작 돼:', Off);
+                insertControlLog(color, id);
                 clearTimeout(timerId);
             }
             break;
