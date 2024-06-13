@@ -48,6 +48,13 @@ create table countSec (
     FOREIGN KEY (SignalControlNumber) REFERENCES TrafficLight(SignalControlNumber)
 );
 
+create table log(
+	id int primary key auto_increment,
+    logdate timestamp,
+    Sequence varchar(50),
+    SignalControlNumber INT not null,
+    FOREIGN KEY (SignalControlNumber) REFERENCES location(SignalControlNumber)
+);
 
 도로 location
 City: 시도명
