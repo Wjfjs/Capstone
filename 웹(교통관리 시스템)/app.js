@@ -246,7 +246,7 @@ app.post('/SignalControlNumberData', async (req, res) => {
 // 로그데이터 insert
 app.post('/insertControlLog', async (req, res) => {
     const { id, color } = req.body; // id는 카메라번호, color는 색상
-    const query = `insert into log(CrTime) values ("${color}")`;
+    const query = `insert into log(Sequence, SignalControlNumber) values ("${color}",${id})`;
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -265,7 +265,7 @@ app.post('/insertControlLog', async (req, res) => {
 // TrafficID
 app.post('/LogDataID', async (req, res) => {
     const { id } = req.body;
-    const query = "select TraffID from TrafficLight where SignalControlNumber = "+id+";";
+    const query = "select id from log where SignalControlNumber = "+id+";";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -283,7 +283,8 @@ app.post('/LogDataID', async (req, res) => {
 // ColorTime
 app.post('/LogDataColorTime', async (req, res) => {
     const { id } = req.body;
-    const query = "select ColorTime from TrafficLight where SignalControlNumber = "+id+";";
+    
+    const query = "select DATE_FORMAT(logdate, '%Y-%m-%d %H:%i:%s') from log where SignalControlNumber = "+id+";";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
@@ -301,7 +302,7 @@ app.post('/LogDataColorTime', async (req, res) => {
 // Sequence (색상)
 app.post('/LogDataSequence', async (req, res) => {
     const { id } = req.body;
-    const query = "select Sequence from TrafficLight where SignalControlNumber = "+id+";";
+    const query = "select Sequence from log where SignalControlNumber = "+id+";";
     try {
         const data = await new Promise((resolve, reject) => {
             db.Query(query, result => {
