@@ -15,6 +15,7 @@ var trafficID2 = [];
 let isChangingLight1 = true; // 신호등 변경 상태를 추적하는 변수
 const lights = ["green", "yellow", "red"];
 
+
 // 시간값 받아오기
 async function GetTimeData() {
 
@@ -184,7 +185,6 @@ async function init(){
     await countAlgorithm();
     await GetTimeData();
     await GetTimeData2();
-    await sibal();
    
     toggleColor();
     changeLight1();
@@ -266,25 +266,33 @@ const lightElements1 = {
     yellow: document.getElementById("yellow"),
     green: document.getElementById("green")
 };
-
 // 1번째 신호등 불 켜지는 알고리즘
 function changeLight1() {
     
     if(isChangingLight1 == true){
-    lightElements1.red.classList.remove("red");
-    lightElements1.yellow.classList.remove("yellow");
-    lightElements1.green.classList.remove("green");
+        lightElements1.red.classList.remove("red");
+        lightElements1.yellow.classList.remove("yellow");
+        lightElements1.green.classList.remove("green");
 
-    const light = lights[currentLight1];
-    lightElements1[light].classList.add(light);
-
-    currentLight1 = (currentLight1 + 1) % lights.length;
-    timerId = setTimeout(changeLight1, durations[currentLight1]*100);
-    
-
+        let light = lights[currentLight1];
+        lightElements1[light].classList.add(light);
+        
+        console.log("쿠캬캬캬캬"+ light);
+        currentLight1 = (currentLight1 + 1) % lights.length;
+        
+        fetch('/InsertLog', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ light })
+        });
+        
+        timerId = setTimeout(changeLight1, durations[currentLight1]*100);
 
     }
 }
+
 // 2번째 신호등 불 켜지는 알고리즘
 function changeLight2() {
     const lightElements2 = {
@@ -389,37 +397,37 @@ function toggleColor(color) {
 
 
 
-async function sibal(){
-    inxfirst = durations[1];
-    inxsecond = durations[2];
-    inxthird = durations[0];
-    console.log("첫째 돼나요?"+ inxfirst);
-    console.log("두째 돼나요?"+ inxsecond);
-    console.log("셋째 돼나요?"+ inxthird);
+// async function sibal(){
+//     inxfirst = durations[1];
+//     inxsecond = durations[2];
+//     inxthird = durations[0];
+//     console.log("첫째 돼나요?"+ inxfirst);
+//     console.log("두째 돼나요?"+ inxsecond);
+//     console.log("셋째 돼나요?"+ inxthird);
 
-    fetch('/InsertLog', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ inxfirst })
+//     fetch('/InsertLog', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ inxfirst })
         
-    })
-    fetch('/InsertLog2', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ inxsecond })
+//     })
+//     fetch('/InsertLog2', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ inxsecond })
         
-    })
-    fetch('/InsertLog3', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ inxthird })
+//     })
+//     fetch('/InsertLog3', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ inxthird })
         
-    })
-}
+//     })
+// }
 

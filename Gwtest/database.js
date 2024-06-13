@@ -5,7 +5,6 @@ let pool = null;
 
 function DB_Connect(){
     pool = mysql.createPool({
-        connectionLimit: 200,
         host: '192.168.1.3',
         user: 'dbuser192381',
         password: 'ce1234',
