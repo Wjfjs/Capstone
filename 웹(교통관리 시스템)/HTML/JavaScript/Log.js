@@ -67,11 +67,11 @@ async function GetLog() {
 function drawLogTable(num, time, color){
     document.getElementById("ControlLogBody").innerHTML = "";
     var Logs = [];
-    var i = num.length-12;
+    var i = num.length-8;
     if(i<=0)
         i = 0;
 
-    for (; i < num.length || i < 12; i++ ){
+    for (; i < num.length || i < 8; i++ ){
         Logs.push({num:num[i], time:time[i], color:color[i]});
     }
     console.log(Logs);

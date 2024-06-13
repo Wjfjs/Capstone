@@ -76,10 +76,12 @@ button {
 }
 
 #Log {
-    margin-top: 50px;
+    margin-top: 40px;
     min-width: 500px;
-    height: 500px;
+    max-height: 370px;
     margin-right: 50px;
+    overflow-y: auto;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -87,11 +89,12 @@ button {
 
 #Control {
     min-width: 500px;
-    height: 200px;
+    height: 150px;
     margin-right: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
 }
 
 
@@ -110,7 +113,11 @@ button {
 }
 
 #ControlLog th {
-    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #3f3f3f;
+    color: #ddd;
     font-weight: bold;
     text-align: center;
 }
@@ -137,7 +144,7 @@ button {
 #TrafficLight {
     width: 500px;
     height: 120px;
-    border-radius: 50px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
