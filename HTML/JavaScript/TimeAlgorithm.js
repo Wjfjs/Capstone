@@ -293,6 +293,14 @@ function changeLight1() {
     const light = lights[currentLight1];
     lightElements1[light].classList.add(light);
 
+    fetch('/InsertLog', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ light })
+        });
+        
     currentLight1 = (currentLight1 + 1) % lights.length;
     timerId = setTimeout(changeLight1, durations[currentLight1]*100);
     }
