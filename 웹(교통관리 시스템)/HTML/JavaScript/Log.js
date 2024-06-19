@@ -1,6 +1,9 @@
 async function GetLog() {
     var fifthSelect = document.getElementById("SignalControlNumber");
     var id = fifthSelect.value; // 카메라번호
+    if(isNaN(id)){
+        return;
+    }
     var num = null;
     var time = null;
     var color = null;
@@ -62,16 +65,15 @@ async function GetLog() {
     }
 
     drawLogTable(num, time, color);
+    var logContainer = document.getElementById("Log");
+    logContainer.scrollTop = logContainer.scrollHeight;
 }
 
 function drawLogTable(num, time, color){
     document.getElementById("ControlLogBody").innerHTML = "";
     var Logs = [];
-    var i = num.length-8;
-    if(i<=0)
-        i = 0;
 
-    for (; i < num.length || i < 8; i++ ){
+    for (var i=0; i < num.length || i < 8; i++ ){
         Logs.push({num:num[i], time:time[i], color:color[i]});
     }
     console.log(Logs);

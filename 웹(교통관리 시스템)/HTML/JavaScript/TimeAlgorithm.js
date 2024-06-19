@@ -337,19 +337,23 @@ function button6Click(color, id) {
 }
 
 async function insertControlLog(color, id) {
-    try {
-        const response = await fetch('/insertControlLog', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id, color })
-        });
-        if (!response.ok) {
-            throw new Error('서버 응답 실패');
+    if(isNaN(id)){
+        console.log(isNaN(id))
+    }else{
+        try {
+            const response = await fetch('/insertControlLog', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ id, color })
+            });
+            if (!response.ok) {
+                throw new Error('서버 응답 실패');
+            }
+        } catch (error) {
+            console.error('fetch 오류:', error);
         }
-    } catch (error) {
-        console.error('fetch 오류:', error);
     }
 }
 
