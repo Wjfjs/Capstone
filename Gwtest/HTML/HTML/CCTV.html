@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <title>AI를 이용한 교통 관리 시스템</title>
+        <link rel="stylesheet" href="CSS/AllStyle.css">
+        <link rel="stylesheet" href="CSS/font.css">
+        <link rel="stylesheet" href="CSS/CCTVStyle.css">
+        <link rel="stylesheet" href="CSS/TrafficLight.css">
+        <script src="JavaScript/Location.js"></script>
+        <script src="JavaScript/Video.js"></script>
+        <script src="JavaScript/Log.js"></script>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center>
+            <div id="Logo-Container">
+                <div id="Logo" onclick="window.location.href = 'Main.html'">MINERVA 교통 관리 시스템</div>
+                <div id="hvr-icon-forward">
+                    메인화면으로 돌아가기
+                    <img id="hvr-icon" src="Image/icon_right_arrow.png" class="hvr-icon" />
+                </div>
+            </div>
+            <script src="JavaScript/Logo.js"></script>
+        </center>
+        <div id="Location_select">
+            <form id="select-form"> <!-- 영상 위치 선택 -->
+                <select id="City" onchange="updateDistrictSelect()">
+                    <option value="NaN">도</option>
+                    <option value="전라남도">전라남도</option>
+                </select>
+                <select id="District" onchange="updateRouteNameSelect()">
+                    <option value="NaN">시/군</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="RouteName" onchange="updateAddressSelect()">
+                    <option value="NaN">로</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="Address" onchange="updateSignalControlNumberSelect()">
+                    <option value="NaN ">주소</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <select id="SignalControlNumber">
+                    <option value="NaN">카메라번호</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <!-- 이곳에 후속 선택지를 동적으로 추가할 예정입니다. -->
+                </select>
+                <button type="button" onclick="ConnectVideo(), GetLog()">확인</button>
+            </form>
+        </div>
+        <div id="container">
+            <div id="left">
+                <div id="video">
+                    <img id="video_feed" src="" alt="신호 없음" />
+                    <p id="errorText"></p>
+                </div>
+            </div>
+            <div id="right">
+                <div id="Log">
+                    <table id="ControlLog">
+                        <thead>
+                            <tr>
+                                <th style="width: 80px;">로그번호</th>
+                                <th>일시</th>
+                                <th style="width: 100px;">내용</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ControlLogBody">
+                            <script>
+                                // 테이블의 tbody 요소 가져오기
+                                var tbody = document.getElementById("ControlLogBody");
+                                // 학생 데이터 배열을 순회하면서 테이블에 데이터 추가
+
+                                for (var i = 0; i < 8; i++ ){
+                                    var row = document.createElement("tr"); // 새로운 행 생성
+
+                                    // 각 데이터에 대한 열 생성
+                                    var numCell = document.createElement("td");
+                                    numCell.style.height = "41px";
+                                    numCell.textContent = null;
+                                    numCell.classList.add("LogNum");
+                                    row.appendChild(numCell);
+
+                                    var timeCell = document.createElement("td");
+                                    timeCell.textContent = null;
+                                    row.appendChild(timeCell);
+
+                                    var colorCell = document.createElement("td");
+                                    colorCell.textContent = null;
+                                    row.appendChild(colorCell);
+
+                                    // 새로운 행을 tbody에 추가
+                                    tbody.appendChild(row);
+                                }
+                            </script>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <script src="JavaScript/Log.js"></script>  -->
+                <form id="ControlTrafficForm">
+                    <div id="Control">
+                        <div id="TrafficLight">
+                            <div id="RedLight" class="TrafficControl"></div>
+                            <div id="YellowLight" class="TrafficControl"></div>
+                            <div id="GreenLight" class="TrafficControl"></div>
+                            <div id="ConfirmLight" class="TrafficControl" onclick="changeTraffic(), GetLog()"></div>
+                            <input type="hidden" id="controlValue" value="0">
+                        </div>
+                    </div>
+                </form>
+                <script src="JavaScript/TrafficControl.js"></script> 
+                <div>
+                    <div id="trafficLeft">
+                        <div class="traffic-light1">
+                            <div id="red" class="light"></div>
+                            <div id="yellow" class="light"></div>
+                            <div id="green" class="light"></div>
+                        </div>
+                    </div>
+                    <script src="JavaScript/TimeAlgorithm.js"></script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

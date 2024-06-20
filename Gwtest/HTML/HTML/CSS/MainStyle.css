@@ -1,0 +1,67 @@
+/* 방문한 링크 스타일 설정 */
+a {
+    text-decoration: none; /* 링크의 밑줄을 제거 */
+    color: inherit; /* 방문한 링크의 색상을 부모 요소의 색상과 동일하게 설정 */
+}
+
+#Menu-Container {
+    min-width: 1200px;
+
+    border-radius: 15px;
+
+    align-items: center;
+
+    display: flex;
+    position: relative;
+}
+
+#go_CCTV{
+    min-width: 400px;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 4px solid black;
+    border-radius: 15px;
+
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#go_Graph{
+    min-width: 400px;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 4px solid black;
+    border-radius: 15px;
+
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#go_Traffic_Light{
+    min-width: 400px;
+    min-height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 4px solid black;
+    border-radius: 15px;
+
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+img {
+    padding: 30px 100px 30px 100px;
+    width: 200px;
+    height: 200px;
+}

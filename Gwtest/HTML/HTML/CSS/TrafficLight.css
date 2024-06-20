@@ -1,0 +1,80 @@
+#trafficLeft {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#trafficRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.traffic-light1 {
+    border: 3px solid black;
+    width: 350px;
+    height: 120px;
+    background-color: #242424;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px 20px 0px 20px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.traffic-light2 {
+    width: 100px;
+    height: 300px;  
+    background-color: black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px;
+    margin-left: 30px;
+    align-items: center;
+}
+
+
+.light {
+    border: 3px solid black;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    background-color: gray;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Dovemayo_gothic';
+    transition: none;
+}
+
+.red {
+    width: 75px;
+    height: 75px;
+    border: 3px solid black;
+    background-color: red;
+    transition: none;
+}
+
+.yellow {
+    width: 75px;
+    height: 75px;
+    border: 3px solid black;
+    background-color: #ff8300;
+    transition: none;
+}
+
+.green {
+    width: 75px;
+    height: 75px;
+    border: 3px solid black;
+    background-color: #00e000;
+    transition: none;
+}
